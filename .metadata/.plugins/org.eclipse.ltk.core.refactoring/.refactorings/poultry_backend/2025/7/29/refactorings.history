@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;poultry_backend/src/main/webapp/WEB-INF/views/trip_entries.jsp&apos; to &apos;entries.jsp&apos;" description="Rename resource &apos;trip_entries.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/WEB-INF/views/trip_entries.jsp" name="entries.jsp" stamp="1752399325705" updateReferences="true"/>
+</session>
