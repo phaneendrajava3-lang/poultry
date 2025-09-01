@@ -352,3 +352,12 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-09-01 09:38:56.791
+!MESSAGE [Info] Lsp agent started successfully.
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-09-01 09:39:02.978
+!MESSAGE [Info]	[lsp] GitHub Copilot Language Server 1.353.0 initialized
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-09-01 09:39:04.640
+!MESSAGE [Info]	[certificates] Removed 13 expired certificates

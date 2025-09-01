@@ -5149,3 +5149,4 @@ Caused by: java.lang.Exception: Resource '/poultry_backend/pom.xml' does not exi
 2025-08-31 22:32:08,384 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2025-08-31 22:32:08,384 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2025-08-31 22:32:08,384 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\poultry_backend\src\test\resources
+2025-09-01 09:38:56,031 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
