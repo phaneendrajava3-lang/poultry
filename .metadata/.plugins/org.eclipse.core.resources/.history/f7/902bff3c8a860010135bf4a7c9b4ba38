@@ -1,0 +1,307 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Login • Chicks Transport</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <style>
+    :root{
+      --bg1:#a8e6ff; --bg2:#ffd7a8; --bg3:#d6f9ff; --bg4:#fff2cc;
+      --card: rgba(255,255,255,0.86);
+      --text:#1f2937; --muted:#6b7280; --focus:#4f86ff;
+      --brand1:#ff7b54; --brand2:#ffa260; --ok:#18b38a; --danger:#e11d48;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;color:var(--text)}
+
+    /* ======= Background: animated mesh + moving grid overlay ======= */
+    body{
+      display:grid;place-items:center;overflow:hidden;
+      background:
+        radial-gradient(1200px 800px at 10% -20%, var(--bg3), transparent 60%),
+        radial-gradient(900px 600px  at 110% 120%, var(--bg4), transparent 60%),
+        linear-gradient(120deg, var(--bg1), #c8f7ff 40%, #fff7e6 60%, var(--bg2));
+      background-size: 200% 200%;
+      animation: mesh 18s ease-in-out infinite alternate;
+    }
+    @keyframes mesh{ from{background-position: 0% 0%} to{background-position: 100% 100%} }
+
+    /* Subtle grid overlay for a “pro” texture */
+    .grid{
+      position:fixed; inset:0; pointer-events:none; opacity:.12;
+      background-image:
+        linear-gradient(transparent 31px, rgba(0,0,0,.06) 32px, transparent 33px),
+        linear-gradient(90deg, transparent 31px, rgba(0,0,0,.06) 32px, transparent 33px);
+      background-size: 32px 32px;
+      animation: slideGrid 30s linear infinite;
+    }
+    @keyframes slideGrid{
+      from{ transform: translate3d(0,0,0) }
+      to  { transform: translate3d(-32px,-32px,0) }
+    }
+
+    /* Parallax “route lines” (transport vibe, very subtle) */
+    .routes{
+      position:fixed; inset:-20vmin; pointer-events:none; opacity:.18; filter: blur(0.5px);
+      background:
+        repeating-linear-gradient(120deg, rgba(255,255,255,.35) 0 2px, transparent 2px 12px),
+        repeating-linear-gradient(300deg, rgba(0,0,0,.05) 0 1px, transparent 1px 10px);
+      transform: rotate(1deg);
+      animation: drift 26s linear infinite;
+    }
+    @keyframes drift{
+      from{ background-position: 0 0, 0 0 }
+      to  { background-position: 200px 120px, -180px -160px }
+    }
+
+    /* ======= Auth Card ======= */
+    .card{
+      position:relative; z-index:2;
+      width:min(92vw, 420px); padding:2.2rem 2rem; border-radius:20px;
+      background:var(--card); backdrop-filter: blur(8px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.16);
+      animation: rise .7s cubic-bezier(.16,.84,.44,1);
+    }
+    @keyframes rise{ from{opacity:0; transform: translateY(12px) scale(.98)} to{opacity:1; transform: translateY(0) scale(1)} }
+
+    .brand{
+      display:flex; align-items:center; gap:.9rem; margin-bottom:.35rem;
+    }
+    .badge{
+      width:52px;height:52px;border-radius:14px; position:relative; flex:0 0 52px;
+      background: radial-gradient(135% 135% at 30% 25%, #fff 0 45%, #ffe066 46% 100%);
+      box-shadow: 0 10px 26px rgba(255,224,102,.55), inset 0 -4px 0 #ffd34d;
+      overflow:hidden;
+    }
+    /* Chick silhouette in badge (inline CSS path) */
+    .badge svg{ position:absolute; inset:10% 12% 12% 10% }
+    .sheen{
+      content:""; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent);
+      transform: translateX(-120%); animation: sheen 4.2s ease-in-out infinite;
+    }
+    @keyframes sheen{ 0%{transform:translateX(-120%)} 40%{transform:translateX(120%)} 100%{transform:translateX(120%)} }
+
+    .title{ font-size:1.35rem; font-weight:700; letter-spacing:.2px; margin:0 }
+    .sub{ color:var(--muted); margin:.15rem 0 1.2rem; font-size:.95rem }
+
+    /* Error */
+    .error{
+      display:none; margin:.6rem 0 1rem; padding:.65rem .8rem; border-radius:12px;
+      background:#ffe6eb; color:var(--danger); border:1px solid #ff9db6;
+      box-shadow: 0 6px 18px rgba(225,29,72,.10);
+    }
+    .error.show{ display:block; animation: shake .45s cubic-bezier(.36,.07,.19,.97) both }
+    @keyframes shake{ 10%,90%{transform:translateX(-1px)} 20%,80%{transform:translateX(2px)} 30%,50%,70%{transform:translateX(-4px)} 40%,60%{transform:translateX(4px)} }
+
+    /* Inputs */
+    .field{ position:relative; margin:1rem 0 }
+    .input{
+      width:100%; padding:1.05rem 3rem 1.05rem 3rem; border:none; outline:none; border-radius:14px;
+      background:#f3f6fb; font-size:1rem; color:#111;
+      transition: box-shadow .22s, background .22s, transform .06s;
+    }
+    .input:focus{ background:#fff; box-shadow:0 0 0 3px var(--focus) }
+    .label{
+      position:absolute; left:3rem; top:50%; transform:translateY(-50%); color:#8a94a6; pointer-events:none; transition:.16s;
+    }
+    .input:focus + .label, .input:not(:placeholder-shown) + .label{
+      top:.25rem; font-size:.78rem; color:var(--focus)
+    }
+    .icon{
+      position:absolute; left:1rem; top:50%; transform:translateY(-50%); font-size:1.15rem; opacity:.9;
+    }
+    .state{
+      position:absolute; right:.9rem; top:50%; transform:translateY(-50%); font-size:1rem; opacity:.0; transition:.2s;
+    }
+    .input:valid ~ .state.ok{ color:var(--ok); opacity:1 }
+    .input:invalid:focus ~ .state.err{ color:var(--danger); opacity:1 }
+
+    /* Button */
+    .btn{
+      width:100%; border:none; border-radius:14px; padding:0.95rem 1rem; margin-top:.5rem;
+      color:#fff; font-weight:700; letter-spacing:.3px; cursor:pointer;
+      background:linear-gradient(90deg,var(--brand1),var(--brand2));
+      box-shadow: 0 14px 28px rgba(255,145,77,.35);
+      transition: transform .08s, box-shadow .18s, filter .2s;
+    }
+    .btn:hover{ filter:brightness(1.03); box-shadow:0 16px 32px rgba(255,145,77,.45); transform:translateY(-1px) }
+    .btn:active{ transform:translateY(1px) scale(.995) }
+
+    /* Button loading state */
+    .btn.loading{
+      position:relative; color:transparent; pointer-events:none;
+    }
+    .btn.loading::after{
+      content:""; position:absolute; inset:0; display:block; margin:auto; width:22px; height:22px; border-radius:50%;
+      border:3px solid rgba(255,255,255,.55); border-top-color:#fff; animation: spin .7s linear infinite;
+    }
+    @keyframes spin{ to{ transform:rotate(360deg) } }
+
+    .row{ display:flex; justify-content:space-between; align-items:center; gap:.6rem; margin:.5rem 0 .25rem; font-size:.9rem; color:var(--muted) }
+    .row a{ color:var(--brand1); text-decoration:none }
+    .row a:hover{ text-decoration:underline }
+
+    .foot{ text-align:center; color:#7b8794; font-size:.85rem; margin-top:1rem }
+
+    /* Inline SVG chick beside card (professional + subtle) */
+    .chick{
+      position:fixed; right:6vmin; bottom:6vmin; width:min(24vmin,220px);
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.22)); z-index:1; pointer-events:none;
+    }
+    .blink{ transform-origin:center; animation: blink 6s ease-in-out infinite }
+    @keyframes blink{ 0%,96%,100%{transform:scaleY(1)} 97%,99%{transform:scaleY(.15)} }
+    .bob{ transform-origin:55% 58%; animation: bob 4.6s ease-in-out infinite }
+    @keyframes bob{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-1.5px) } }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .grid,.routes,body{ animation:none }
+      .blink,.bob{ animation:none }
+      .btn.loading::after{ animation:none }
+    }
+
+    @media (max-width:480px){
+      .card{ width:min(94vw, 430px); padding:1.6rem 1.2rem }
+      .row{ flex-direction:column; align-items:flex-start }
+      .chick{ width:min(28vmin, 190px); right:3.5vmin; bottom:4vmin }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="routes"></div>
+
+  <!-- Subtle professional chick (inline SVG only) -->
+  <svg class="chick" viewBox="0 0 300 260" aria-hidden="true">
+    <defs>
+      <radialGradient id="gBody" cx="40%" cy="35%" r="70%">
+        <stop offset="0%" stop-color="#fff8b8"/>
+        <stop offset="55%" stop-color="#ffe067"/>
+        <stop offset="100%" stop-color="#ffc83d"/>
+      </radialGradient>
+      <radialGradient id="gWing" cx="55%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#ffd94d"/>
+        <stop offset="100%" stop-color="#ffbd3b"/>
+      </radialGradient>
+      <linearGradient id="gBeak" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#ff9a3d"/>
+        <stop offset="100%" stop-color="#ff7a2d"/>
+      </linearGradient>
+    </defs>
+    <!-- body -->
+    <ellipse cx="150" cy="142" rx="95" ry="78" fill="url(#gBody)"/>
+    <ellipse cx="120" cy="112" rx="35" ry="25" fill="rgba(255,255,255,.55)"/>
+    <!-- wing -->
+    <g transform="translate(150,142)">
+      <ellipse cx="0" cy="0" rx="45" ry="32" fill="url(#gWing)"/>
+      <path d="M-40,-5 C-10,-18 10,-15 40,-5 C10,0 -10,8 -40,-5 Z" fill="rgba(255,180,50,0.35)"/>
+    </g>
+    <!-- head -->
+    <g class="bob">
+      <ellipse cx="210" cy="105" rx="42" ry="38" fill="url(#gBody)"/>
+      <g class="blink">
+        <circle cx="222" cy="102" r="5.5" fill="#1f2937"/>
+        <circle cx="222" cy="99" r="2.1" fill="#fff" opacity=".9"/>
+      </g>
+      <path d="M236,112 L258,104 L236,96 Z" fill="url(#gBeak)"/>
+      <path d="M236,112 L252,108 L236,106 Z" fill="#e66c22" opacity=".5"/>
+    </g>
+    <!-- legs -->
+    <g>
+      <rect x="165" y="200" width="6" height="28" rx="3" fill="#e27627"/>
+      <rect x="188" y="200" width="6" height="28" rx="3" fill="#e27627"/>
+      <rect x="158" y="226" width="16" height="4" rx="2" fill="#e27627"/>
+      <rect x="182" y="226" width="16" height="4" rx="2" fill="#e27627"/>
+    </g>
+  </svg>
+
+  <!-- ======= Card ======= -->
+  <main class="card">
+    <div class="brand">
+      <div class="badge">
+        <!-- minimal chick mark inside the badge -->
+        <svg viewBox="0 0 64 64" width="52" height="52" aria-hidden="true">
+          <circle cx="34" cy="28" r="18" fill="#ffe066"/>
+          <circle cx="40" cy="24" r="2.6" fill="#1f2937"/>
+          <path d="M45 29 L55 26 L45 23 Z" fill="#ff8a3a"/>
+        </svg>
+        <div class="sheen"></div>
+      </div>
+      <div>
+        <h1 class="title">Chicks Transport</h1>
+        <p class="sub">Secure sign-in • Professional UI with subtle motion</p>
+      </div>
+    </div>
+
+    <div class="error<%= request.getParameter("error") != null ? " show" : "" %>">
+      Invalid username or password.
+    </div>
+
+    <form action="login" method="post" autocomplete="off" id="loginForm">
+      <div class="field">
+        <span class="icon">👤</span>
+        <input class="input" id="username" name="username" type="text" required placeholder=" " minlength="2"/>
+        <span class="label">Username</span>
+        <span class="state ok">✔</span>
+        <span class="state err">!</span>
+      </div>
+
+      <div class="field">
+        <span class="icon">🔒</span>
+        <input class="input" id="password" name="password" type="password" required placeholder=" " minlength="3"/>
+        <span class="label">Password</span>
+        <span class="state ok">✔</span>
+        <span class="state err">!</span>
+      </div>
+
+      <div class="row">
+        <label><input type="checkbox" id="remember"/> Remember me</label>
+        <a href="#" onclick="alert('Please contact your admin to reset your password.');return false;">Forgot password?</a>
+      </div>
+
+      <button class="btn" id="submitBtn" type="submit">Sign In</button>
+    </form>
+
+    <div class="foot">© <span id="year"></span> Chicks Transport App</div>
+  </main>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Remember me (localStorage)
+    (() => {
+      const user = document.getElementById('username');
+      const remember = document.getElementById('remember');
+      if(localStorage.getItem('ct_remember') === '1'){
+        remember.checked = true;
+        user.value = localStorage.getItem('ct_username') || '';
+      }
+      document.getElementById('loginForm').addEventListener('submit', () => {
+        if(remember.checked){
+          localStorage.setItem('ct_remember','1');
+          localStorage.setItem('ct_username', user.value);
+        }else{
+          localStorage.removeItem('ct_remember');
+          localStorage.removeItem('ct_username');
+        }
+        // Trigger loading animation on button (client-side; server will redirect)
+        document.getElementById('submitBtn').classList.add('loading');
+      });
+    })();
+
+    // Enhance error shake if ?error is present (class already applied to .error)
+    window.addEventListener('load', () => {
+      const hasError = new URLSearchParams(location.search).has('error');
+      if(hasError){
+        // brief card nudge for emphasis
+        const card = document.querySelector('.card');
+        card.style.animation = 'shake .45s cubic-bezier(.36,.07,.19,.97)';
+        setTimeout(()=>card.style.animation='', 500);
+      }
+    });
+  </script>
+</body>
+</html>

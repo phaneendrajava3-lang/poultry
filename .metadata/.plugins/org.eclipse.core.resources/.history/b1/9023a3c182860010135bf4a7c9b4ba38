@@ -1,0 +1,30 @@
+package com.poultry.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.poultry.model.Customer;
+import com.poultry.model.Entry;
+
+public interface EntryRepository extends JpaRepository<Entry, Long> {
+    List<Entry> findByCustomer(Customer customer);
+
+    @Query("SELECT e FROM Entry e WHERE (:customerName IS NULL OR LOWER(e.customer.name) LIKE LOWER(CONCAT('%',:customerName,'%'))) AND (:startDate IS NULL OR e.date >= :startDate) AND (:endDate IS NULL OR e.date <= :endDate) ORDER BY e.date DESC")
+    List<Entry> filterEntries(@Param("customerName") String customerName, @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate, Pageable pageable);
+
+    List<Entry> findAllByOrderByDateDesc(Pageable pageable);
+
+    @Query("SELECT COUNT(e) FROM Entry e WHERE MONTH(e.date) = :month AND YEAR(e.date) = :year")
+    long countByMonth(@Param("month") int month, @Param("year") int year);
+
+    @Query("SELECT SUM(e.finalPrice) FROM Entry e WHERE MONTH(e.date) = :month AND YEAR(e.date) = :year")
+    Double sumFinalPriceByMonth(@Param("month") int month, @Param("year") int year);
+
+    @Query("SELECT SUM(e.receivedAmount) FROM Entry e WHERE MONTH(e.date) = :month AND YEAR(e.date) = :year")
+    Double sumReceivedAmountByMonth(@Param("month") int month, @Param("year") int year);
+}

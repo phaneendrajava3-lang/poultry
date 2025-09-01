@@ -1,0 +1,39 @@
+package com.poultry.controller;
+
+import com.poultry.model.Entry;
+import com.poultry.model.Customer;
+import com.poultry.service.EntryService;
+import com.poultry.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/entries")
+public class EntryController {
+
+    @Autowired private EntryService entryService;
+    @Autowired private CustomerService customerService;
+
+    @GetMapping
+    public String page(Model model) {
+        model.addAttribute("entries", entryService.getAll());
+        model.addAttribute("customers", customerService.findAll()); // for dropdown
+        return "entries";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute Entry entry,
+                       @RequestParam("customer.id") Long customerId) {
+        // attach managed Customer by ID coming from the dropdown
+        Customer customer = customerService.findById(customerId);
+        if (customer == null) {
+            // handle gracefully; for now just bounce back
+            return "redirect:/entries?error=customer_not_found";
+        }
+        entry.setCustomer(customer);
+        entryService.save(entry);
+        return "redirect:/entries";
+    }
+}

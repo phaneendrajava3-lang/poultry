@@ -1,0 +1,12 @@
+
+package com.poultry.service;
+
+import com.poultry.model.Van;
+import java.util.List;
+
+public interface VanService {
+    Van findById(Long id);
+	Object findAll();
+	void save(Van v);
+	void delete(Long id);
+}

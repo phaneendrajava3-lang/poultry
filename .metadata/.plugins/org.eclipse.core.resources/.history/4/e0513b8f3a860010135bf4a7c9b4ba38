@@ -1,0 +1,50 @@
+package com.poultry.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.poultry.model.Driver;
+import com.poultry.model.TripDetails;
+import com.poultry.model.Van;
+import com.poultry.service.DriverService;
+import com.poultry.service.TripDetailsService;
+import com.poultry.service.VanService;
+
+@Controller
+@RequestMapping("/trip-details")
+public class TripDetailsController {
+    @Autowired private TripDetailsService tripDetailsService;
+    @Autowired private DriverService driverService;
+    @Autowired private VanService vanService;
+
+    @GetMapping
+    public String list(Model model) {
+        List<TripDetails> tripDetailsList = tripDetailsService.findAll();
+        List<Driver> drivers = driverService.findAll();
+        List<Van> vans = vanService.findAll();
+        model.addAttribute("tripDetailsList", tripDetailsList);
+        model.addAttribute("drivers", drivers);
+        model.addAttribute("vans", vans);
+        return "trip_details";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute TripDetails tripDetails) {
+        tripDetailsService.save(tripDetails);
+        return "redirect:/trip-details";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        tripDetailsService.delete(id);
+        return "redirect:/trip-details";
+    }
+}

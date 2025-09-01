@@ -1,0 +1,15 @@
+
+package com.poultry.service;
+
+import com.poultry.model.Driver;
+import java.util.List;
+
+public interface DriverService {
+    Driver findById(Long id);
+    Driver saveDriver(Driver driver);
+    Driver updateDriver(Long id, Driver driver);
+    void deleteDriver(Long id);
+	Object findAll();
+	void save(Driver d);
+	void delete(Long id);
+}

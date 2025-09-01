@@ -1,0 +1,92 @@
+package com.poultry.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.poultry.model.Driver;
+import com.poultry.model.TripDetails;
+import com.poultry.model.Van;
+import com.poultry.service.DriverService;
+import com.poultry.service.TripDetailsService;
+import com.poultry.service.VanService;
+
+@Controller
+@RequestMapping("/trip-details")
+public class TripDetailsController {
+    @Autowired private TripDetailsService tripDetailsService;
+    @Autowired private DriverService driverService;
+    @Autowired private VanService vanService;
+
+    @GetMapping
+    public String list(@RequestParam(value = "month", required = false) Integer month,
+                      @RequestParam(value = "year", required = false) Integer year,
+                      Model model) {
+        List<TripDetails> tripDetailsList;
+        if (month != null && year != null) {
+            tripDetailsList = tripDetailsService.findByMonthAndYear(month, year);
+        } else {
+            tripDetailsList = tripDetailsService.findAll();
+        }
+        List<Driver> drivers = driverService.findAll();
+        List<Van> vans = vanService.findAll();
+        model.addAttribute("tripDetailsList", tripDetailsList);
+        model.addAttribute("drivers", drivers);
+        model.addAttribute("vans", vans);
+        model.addAttribute("selectedMonth", month);
+        model.addAttribute("selectedYear", year);
+        model.addAttribute("currentYear", java.time.LocalDate.now().getYear());
+        return "trip_details";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute TripDetails tripDetails) {
+        tripDetailsService.save(tripDetails);
+        return "redirect:/trip-details";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        tripDetailsService.delete(id);
+        return "redirect:/trip-details";
+    }
+
+    @GetMapping("/latest-trip-number")
+    @ResponseBody
+    public Integer getLatestTripNumber() {
+        Integer latest = tripDetailsService.getLatestTripNumber();
+        return latest != null ? latest : 0;
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model,
+                      @RequestParam(value = "month", required = false) Integer month,
+                      @RequestParam(value = "year", required = false) Integer year) {
+        TripDetails tripDetails = tripDetailsService.findById(id);
+        List<TripDetails> tripDetailsList;
+        if (month != null && year != null) {
+            tripDetailsList = tripDetailsService.findByMonthAndYear(month, year);
+        } else {
+            tripDetailsList = tripDetailsService.findAll();
+        }
+        List<Driver> drivers = driverService.findAll();
+        List<Van> vans = vanService.findAll();
+        model.addAttribute("tripDetailsList", tripDetailsList);
+        model.addAttribute("drivers", drivers);
+        model.addAttribute("vans", vans);
+        model.addAttribute("selectedMonth", month);
+        model.addAttribute("selectedYear", year);
+        model.addAttribute("currentYear", java.time.LocalDate.now().getYear());
+        model.addAttribute("editTripDetails", tripDetails);
+        return "trip_details";
+    }
+}

@@ -1,0 +1,12 @@
+package com.poultry.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.poultry.model.Customer;
+import com.poultry.model.Entry;
+
+public interface EntryRepository extends JpaRepository<Entry, Long> {
+    List<Entry> findByCustomer(Customer customer);
+}

@@ -1,3 +1,4 @@
-GitRepositoriesView.GitDirectories=C\:\\Users\\dell\\git\\repository\\.git;C\:\\Users\\dell\\eclipse-workspace\\Poultry_Transport_App_V1\\poultry_backend\\.git;
-GitRepositoriesView.GitDirectories.relative=C\:\\Users\\dell\\git\\repository\\.git;poultry_backend\\.git;
+GitRepositoriesView.GitDirectories=C\:\\Users\\dell\\eclipse-workspace\\Poultry_Transport_App_V1\\.git;C\:\\Users\\dell\\eclipse-workspace\\Poultry_Transport_App_V1\\poultry_backend\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;poultry_backend\\.git;
+RepositoryGroups.uuids=
 eclipse.preferences.version=1

@@ -1,0 +1,12 @@
+package com.poultry.service;
+
+import com.poultry.model.TripDetails;
+import java.util.List;
+
+public interface TripDetailsService {
+    List<TripDetails> findAll();
+    TripDetails findById(Long id);
+    TripDetails save(TripDetails tripDetails);
+    void delete(Long id);
+    TripDetails findByTripNumber(int tripNumber);
+}

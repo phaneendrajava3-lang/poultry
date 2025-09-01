@@ -1,0 +1,15 @@
+
+package com.poultry.service;
+
+import com.poultry.model.Customer;
+import com.poultry.model.Entry;
+import java.util.List;
+
+public interface EntryService {
+
+	  public List<Entry> getAll();
+	  public Entry findById(Long id);   
+	  public Entry save(Entry entry);
+	  public Entry update(Long id, Entry entry);
+	  public void delete(Long id);
+}

@@ -1,0 +1,73 @@
+package com.poultry.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.poultry.model.Customer;
+import com.poultry.model.Entry;
+import com.poultry.service.CustomerService;
+import com.poultry.service.EntryService;
+
+@Controller
+@RequestMapping("/customers")
+public class CustomerController {
+
+    @Autowired private CustomerService customerService;
+    @Autowired private EntryService entryService;
+
+    @GetMapping
+    public String list(Model model, HttpSession session) {
+        if (session.getAttribute("loggedInUser") == null) {
+            return "redirect:/login";
+        }
+        java.util.List<Customer> customers = customerService.findAll();
+        for (Customer c : customers) {
+            double sum = 0.0;
+            for (Entry e : entryService.findByCustomer(c)) {
+                Double balance = e.getBalanceAmount();
+                if (balance != null) sum += balance;
+            }
+            // Force outstandingAmount to double
+            c.setOutstandingAmount(sum);
+            // Debug print to check type
+            System.out.println("Customer: " + c.getName() + ", outstandingAmount type: " + ((Object)c.getOutstandingAmount()).getClass().getName());
+            customerService.save(c);
+        }
+        model.addAttribute("customers", customers);
+        return "customers";
+    }
+
+    @PostMapping("/save")
+    public String saveOrUpdate(@ModelAttribute Customer c, HttpSession session) {
+        if (session.getAttribute("loggedInUser") == null) {
+            return "redirect:/login";
+        }
+        customerService.save(c);
+        return "redirect:/customers";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id, HttpSession session) {
+        if (session.getAttribute("loggedInUser") == null) {
+            return "redirect:/login";
+        }
+        customerService.delete(id);
+        return "redirect:/customers";
+    }
+
+    @GetMapping("/filter")
+    @ResponseBody
+    public java.util.List<Customer> filterByName(@RequestParam("name") String name) {
+        return customerService.findByNameContainingIgnoreCase(name);
+    }
+}

@@ -1,0 +1,244 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Manage Customers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <script>var contextPath = '${pageContext.request.contextPath}';</script>
+</head>
+<body class="bg-light">
+<%@ include file="nav.jsp" %>
+<div class="container mt-4">
+<!--  <div class="d-flex justify-content-start mb-3">
+    <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left"></i> Back
+    </a>
+  </div>-->
+
+  <h2 class="mb-3">Manage Customers</h2>
+
+  <!-- Add -->
+  <form action="${pageContext.request.contextPath}/customers/save" method="post" class="card p-4 mb-4 shadow-sm bg-white">
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label">Customer Name</label>
+        <input type="text" name="name" class="form-control" required/>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Mobile</label>
+        <input type="text" name="mobile" class="form-control"/>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Address</label>
+        <input type="text" name="address" class="form-control"/>
+      </div>
+      <div class="col-md-12 text-end">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="reset" class="btn btn-secondary ms-2">Clear</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Filters -->
+  <div class="row mb-3">
+    <div class="col-md-4 d-flex">
+      <input id="filter-name" class="form-control" placeholder="Filter by name" />
+      <button id="filter-btn" class="btn btn-primary ms-2" type="button">Search</button>
+    </div>
+    <div class="col-md-4">
+      <input id="filter-mobile" class="form-control" placeholder="Filter by mobile" />
+    </div>
+  </div>
+
+  <!-- Table -->
+  <table class="table table-bordered table-hover bg-white shadow-sm" id="custTable">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th><th>Mobile</th><th>Address</th><th>Outstanding</th><th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <c:forEach var="cust" items="${customers}">
+        <tr>
+          <td>${cust.name}</td>
+          <td>${cust.mobile}</td>
+          <td>${cust.address}</td>
+          <td>${cust.outstandingAmount != null ? cust.outstandingAmount : 0}</td>
+          <td class="d-flex gap-1">
+            <button class="btn btn-sm btn-outline-primary p-1" data-bs-toggle="modal" data-bs-target="#editModal"
+                    onclick="fillEdit('${cust.id}','${cust.name}','${cust.mobile}','${cust.address}')" title="Edit">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <c:choose>
+              <c:when test="${cust.outstandingAmount gt 0}">
+                <a class="btn btn-sm btn-outline-danger p-1 disabled" href="#" onclick="return false;" title="Delete">
+                  <i class="bi bi-trash"></i>
+                </a>
+              </c:when>
+              <c:otherwise>
+                <a class="btn btn-sm btn-outline-danger p-1" href="#" onclick="return canDelete(${cust.outstandingAmount});" title="Delete">
+                  <i class="bi bi-trash"></i>
+              </c:otherwise>
+            </c:choose>
+          </td>
+        </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1"><div class="modal-dialog">
+  <form class="modal-content" action="${pageContext.request.contextPath}/customers/save" method="post">
+    <div class="modal-header"><h5 class="modal-title">Edit Customer</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body row g-3 px-3">
+      <input type="hidden" name="id" id="edit-id"/>
+      <div class="col-12">
+        <label>Name</label>
+        <input class="form-control" name="name" id="edit-name" required/>
+      </div>
+      <div class="col-12">
+        <label>Mobile</label>
+        <input class="form-control" name="mobile" id="edit-mobile"/>
+      </div>
+      <div class="col-12">
+        <label>Address</label>
+        <input class="form-control" name="address" id="edit-address"/>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" type="submit">Update</button>
+      <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+    </div>
+  </form>
+</div></div>
+
+<!-- View Modal -->
+<div class="modal fade" id="viewModal" tabindex="-1"><div class="modal-dialog">
+  <div class="modal-content p-3">
+    <div class="modal-header"><h5 class="modal-title">Customer Details</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <p><strong>ID:</strong> <span id="v-id"></span></p>
+      <p><strong>Name:</strong> <span id="v-name"></span></p>
+      <p><strong>Mobile:</strong> <span id="v-mobile"></span></p>
+      <p><strong>Address:</strong> <span id="v-address"></span></p>
+    </div>
+  </div>
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function fillEdit(id,n,m,a){
+    document.getElementById('edit-id').value=id;
+    document.getElementById('edit-name').value=n;
+    document.getElementById('edit-mobile').value=m;
+    document.getElementById('edit-address').value=a;
+  }
+  function fillView(id,n,m,a){
+    document.getElementById('v-id').innerText=id;
+    document.getElementById('v-name').innerText=n;
+    document.getElementById('v-mobile').innerText=m;
+    document.getElementById('v-address').innerText=a;
+  }
+  function canDelete(outstanding) {
+    if (outstanding > 0) return false;
+    return confirm('Delete this customer?');
+  }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterInput = document.getElementById('filter-name');
+      const filterBtn = document.getElementById('filter-btn');
+      const tbody = document.querySelector('#custTable tbody');
+      const originalRows = Array.from(tbody.children); // Keep the original rows
+
+      function filterCustomers() {
+        let filterValue = filterInput.value.trim().toLowerCase(); // Case-insensitive filtering
+		console.log('Filtering for:', filterValue);
+        if (filterValue === '') {
+          // Reset the table to the original rows if filter is empty
+          tbody.innerHTML = ''; // Clear the table body
+          originalRows.forEach(row => tbody.appendChild(row)); // Append original rows
+          return;
+        }
+
+        const url = `${contextPath}/customers/filter?name=` + encodeURIComponent(filterValue);
+		console.log('Fetching from URL:', url);
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            tbody.innerHTML = ''; // Clear current table content
+			console.log('Filtered data:', data);
+            if (!Array.isArray(data) || data.length === 0) {
+              return; // If no data, leave the table empty
+            }
+            
+            // Loop through the filtered data and create table rows
+            data.forEach(cust => {
+              const custId = (cust.id !== undefined && cust.id !== null) ? String(cust.id) : '';
+			  console.log('Processing customer ID:', custId);
+              const custName = (cust.name !== undefined && cust.name !== null) ? String(cust.name) : '';
+			  console.log('Customer Name:', custName);
+              const custMobile = (cust.mobile !== undefined && cust.mobile !== null) ? String(cust.mobile) : '';
+              const custAddress = (cust.address !== undefined && cust.address !== null) ? String(cust.address) : '';
+              const custOutstanding = typeof cust.outstandingAmount === 'number' ? cust.outstandingAmount : 0;
+			  console.log('Outstanding Amount:', custOutstanding);
+
+              let deleteBtn = '';
+              if (custOutstanding > 0) {
+                deleteBtn = `<a class="btn btn-sm btn-outline-danger p-1 disabled" href="#" onclick="return false;" title="Delete">
+                  <i class="bi bi-trash"></i>
+                </a>`;
+              } else {
+                deleteBtn = `<a class="btn btn-sm btn-outline-danger p-1" href="#" onclick="return canDelete(${custOutstanding});" title="Delete">
+                  <i class="bi bi-trash"></i>
+                </a>`;
+              }
+
+              const tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td>${custName}</td>
+				${custName}
+                <td>${custMobile}</td>
+                <td>${custAddress}</td>
+                <td>${custOutstanding}</td>
+                <td class="d-flex gap-1">
+                  <button class="btn btn-sm btn-outline-primary p-1 edit-btn"
+                    data-id="${custId}"
+                    data-name="${custName}"
+                    data-mobile="${custMobile}"
+                    data-address="${custAddress}"
+                    data-bs-toggle="modal" data-bs-target="#editModal" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  ${deleteBtn}
+                </td>
+              `;
+              tbody.appendChild(tr);
+            });
+
+            // Attach a single delegated event listener for edit buttons
+            tbody.addEventListener('click', function(event) {
+              const btn = event.target.closest('.edit-btn');
+              if (btn) {
+                document.getElementById('edit-id').value = btn.getAttribute('data-id');
+                document.getElementById('edit-name').value = btn.getAttribute('data-name');
+                document.getElementById('edit-mobile').value = btn.getAttribute('data-mobile');
+                document.getElementById('edit-address').value = btn.getAttribute('data-address');
+              }
+            });
+          });
+      }
+
+      filterBtn.addEventListener('click', filterCustomers);
+	  console.log('Adding input event listener to filter input', filterInput);
+      filterInput.addEventListener('input', filterCustomers);
+    });
+
+</script>
+</body>
+</html>

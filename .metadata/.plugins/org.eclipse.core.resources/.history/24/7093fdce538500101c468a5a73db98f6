@@ -1,0 +1,11 @@
+package com.poultry.service;
+
+import com.poultry.model.Customer;
+import java.util.List;
+
+public interface CustomerService {
+	List<Customer> findAll();
+	void save(Customer c);
+	void delete(Long id);
+	Customer findById(Long customerId);
+}

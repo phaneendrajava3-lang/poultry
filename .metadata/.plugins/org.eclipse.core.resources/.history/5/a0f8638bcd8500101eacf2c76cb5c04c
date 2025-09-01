@@ -1,0 +1,100 @@
+package com.poultry.service.impl;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.poultry.model.Customer;
+import com.poultry.model.Entry;
+import com.poultry.repository.CustomerRepository;
+import com.poultry.repository.EntryRepository;
+import com.poultry.service.EntryService;
+
+@Service
+public class EntryServiceImpl implements EntryService {
+
+    @Autowired
+    private EntryRepository entryRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Override
+    public List<Entry> getAll() {
+        return entryRepository.findAll();
+    }
+
+    @Override
+    public Entry findById(Long id) {
+        return entryRepository.findById(id).orElse(null);
+    }
+
+    private void updateCustomerOutstanding(Customer customer) {
+        if (customer == null || customer.getId() == null) {
+			return;
+		}
+        List<Entry> entries = entryRepository.findByCustomer(customer);
+        double sum = 0.0;
+        for (Entry e : entries) {
+            sum += e.getBalanceAmount();
+        }
+        customer.setOutstandingAmount(sum);
+        customerRepository.save(customer);
+    }
+
+    @Override
+    public Entry save(Entry entry) {
+        if (entry.getCustomer() != null && entry.getCustomer().getId() != null) {
+            Customer existing = customerRepository.findById(entry.getCustomer().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Customer not found with ID " + entry.getCustomer().getId()));
+            entry.setCustomer(existing);
+        }
+        Entry saved = entryRepository.save(entry);
+        updateCustomerOutstanding(saved.getCustomer());
+        return saved;
+    }
+
+    @Override
+    public Entry update(Long id, Entry entry) {
+        entry.setId(id);
+        Entry updated = save(entry);
+        updateCustomerOutstanding(updated.getCustomer());
+        return updated;
+    }
+
+    @Override
+    public void delete(Long id) {
+        Entry entry = entryRepository.findById(id).orElse(null);
+        Customer customer = (entry != null) ? entry.getCustomer() : null;
+        entryRepository.deleteById(id);
+        if (customer != null) {
+			updateCustomerOutstanding(customer);
+		}
+    }
+
+    @Override
+    public List<Entry> findByCustomer(Customer customer) {
+        return entryRepository.findByCustomer(customer);
+    }
+
+    @Override
+    public List<Entry> filterEntries(String customerName, LocalDate startDate, LocalDate endDate, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return entryRepository.filterEntries(
+            (customerName != null && !customerName.isEmpty()) ? customerName : null,
+            startDate,
+            endDate,
+            pageable
+        );
+    }
+
+    @Override
+    public List<Entry> getPaged(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return entryRepository.findAllByOrderByDateDesc(pageable);
+    }
+}

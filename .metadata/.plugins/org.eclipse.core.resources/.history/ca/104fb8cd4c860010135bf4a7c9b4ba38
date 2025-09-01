@@ -1,0 +1,91 @@
+package com.poultry.model;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+public class TripDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private int tripNumber;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "driver_id")
+    private Driver driver;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codriver_id")
+    private Driver codriver;
+
+    private String loadingPoint;
+    private double fuelCost;
+    private String fuelBillNumber;
+    private int deadChicks;
+    private double deadChicksWeight;
+    private Double totalChicksWeight;
+    private Double chicksAmount;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "van_id")
+    private Van van;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private java.time.LocalDate startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private java.time.LocalDate endDate;
+    private double expenses;
+
+    // Getters and setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public int getTripNumber() { return tripNumber; }
+    public void setTripNumber(int tripNumber) { this.tripNumber = tripNumber; }
+
+    public Driver getDriver() { return driver; }
+    public void setDriver(Driver driver) { this.driver = driver; }
+
+    public Driver getCodriver() { return codriver; }
+    public void setCodriver(Driver codriver) { this.codriver = codriver; }
+
+    public String getLoadingPoint() { return loadingPoint; }
+    public void setLoadingPoint(String loadingPoint) { this.loadingPoint = loadingPoint; }
+
+    public double getFuelCost() { return fuelCost; }
+    public void setFuelCost(double fuelCost) { this.fuelCost = fuelCost; }
+
+    public String getFuelBillNumber() { return fuelBillNumber; }
+    public void setFuelBillNumber(String fuelBillNumber) { this.fuelBillNumber = fuelBillNumber; }
+
+    public int getDeadChicks() { return deadChicks; }
+    public void setDeadChicks(int deadChicks) { this.deadChicks = deadChicks; }
+
+    public double getDeadChicksWeight() { return deadChicksWeight; }
+    public void setDeadChicksWeight(double deadChicksWeight) { this.deadChicksWeight = deadChicksWeight; }
+
+    public Double getTotalChicksWeight() { return totalChicksWeight; }
+    public void setTotalChicksWeight(Double totalChicksWeight) { this.totalChicksWeight = totalChicksWeight; }
+    public Double getChicksAmount() { return chicksAmount; }
+    public void setChicksAmount(Double chicksAmount) { this.chicksAmount = chicksAmount; }
+
+    public Van getVan() { return van; }
+    public void setVan(Van van) { this.van = van; }
+
+    public java.time.LocalDate getStartDate() { return startDate; }
+    public void setStartDate(java.time.LocalDate startDate) { this.startDate = startDate; }
+
+    public java.time.LocalDate getEndDate() { return endDate; }
+    public void setEndDate(java.time.LocalDate endDate) { this.endDate = endDate; }
+
+    public double getExpenses() { return expenses; }
+    public void setExpenses(double expenses) { this.expenses = expenses; }
+}

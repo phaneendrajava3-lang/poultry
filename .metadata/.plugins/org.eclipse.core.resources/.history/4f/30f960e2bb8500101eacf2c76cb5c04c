@@ -1,0 +1,123 @@
+package com.poultry.controller;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfWriter;
+import com.poultry.model.Customer;
+import com.poultry.model.Entry;
+import com.poultry.service.CustomerService;
+import com.poultry.service.EntryService;
+import com.poultry.service.TripDetailsService;
+
+@Controller
+@RequestMapping("/entries")
+public class EntryController {
+
+    @Autowired private EntryService entryService;
+    @Autowired private CustomerService customerService;
+    @Autowired private TripDetailsService tripDetailsService;
+
+    @GetMapping
+    public String page(Model model) {
+        model.addAttribute("entries", entryService.getAll());
+        model.addAttribute("customers", customerService.findAll()); // for dropdown
+        model.addAttribute("tripDetailsList", tripDetailsService.findAll()); // for trip number dropdown
+        return "entries";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute Entry entry,
+                       @RequestParam("customer.id") Long customerId) {
+        // attach managed Customer by ID coming from the dropdown
+        Customer customer = customerService.findById(customerId);
+        if (customer == null) {
+            // handle gracefully; for now just bounce back
+            return "redirect:/entries?error=customer_not_found";
+        }
+        entry.setCustomer(customer);
+        // Server-side validation for Book No/Bill No. to contain '/'
+        if (entry.getBookOrBillNo() == null || !entry.getBookOrBillNo().contains("/")) {
+            return "redirect:/entries?error=invalid_book_or_bill_no";
+        }
+        entryService.save(entry);
+        return "redirect:/entries";
+    }
+
+    @GetMapping("/print/{id}")
+    public void printEntryPdf(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        Entry entry = entryService.findById(id);
+        if (entry == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Entry not found");
+            return;
+        }
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=entry-" + id + ".pdf");
+        Document document = new Document();
+        try {
+            PdfWriter.getInstance(document, response.getOutputStream());
+            document.open();
+            document.add(new Paragraph("Entry Details"));
+            document.add(new Paragraph("------------------------------"));
+            document.add(new Paragraph("ID: " + entry.getId()));
+            document.add(new Paragraph("Date: " + entry.getDate()));
+            document.add(new Paragraph("Trip Number: " + entry.getTripNumber()));
+            document.add(new Paragraph("Customer: " + (entry.getCustomer() != null ? entry.getCustomer().getName() : "")));
+            document.add(new Paragraph("Book No/Bill No.: " + entry.getBookOrBillNo()));
+            document.add(new Paragraph("Bird Count: " + entry.getBirdCount()));
+            document.add(new Paragraph("Weight: " + entry.getWeight()));
+            document.add(new Paragraph("Unit Price: " + entry.getUnitPrice()));
+            document.add(new Paragraph("Extra Charges: " + entry.getExtraCharges()));
+            document.add(new Paragraph("Final Price: " + entry.getFinalPrice()));
+            document.add(new Paragraph("Received Amount: " + entry.getReceivedAmount()));
+            document.add(new Paragraph("Balance Amount: " + entry.getBalanceAmount()));
+            document.add(new Paragraph("Mode of Payment: " + entry.getModeOfPayment()));
+            document.close();
+        } catch (Exception ex) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "PDF generation failed");
+        }
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        entryService.delete(id);
+        return "redirect:/entries";
+    }
+
+    @GetMapping("/filter")
+    @ResponseBody
+    public List<Entry> filterEntries(@RequestParam(value = "customerName", required = false) String name,
+                                     @RequestParam(value = "startDate", required = false) String startDateStr,
+                                     @RequestParam(value = "endDate", required = false) String endDateStr) {
+        LocalDate startDate = null;
+        LocalDate endDate = null;
+        try {
+            if (startDateStr != null && !startDateStr.isEmpty()) {
+                startDate = LocalDate.parse(startDateStr);
+            }
+            if (endDateStr != null && !endDateStr.isEmpty()) {
+                endDate = LocalDate.parse(endDateStr);
+            }
+        } catch (DateTimeParseException e) {
+            // ignore, will be null
+        }
+        return entryService.filterEntries(name, startDate, endDate);
+    }
+}

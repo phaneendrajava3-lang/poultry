@@ -1,0 +1,52 @@
+package com.poultry.service.impl;
+
+import com.poultry.model.Customer;
+import com.poultry.model.Entry;
+import com.poultry.repository.CustomerRepository;
+import com.poultry.repository.EntryRepository;
+import com.poultry.service.EntryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class EntryServiceImpl implements EntryService {
+
+    @Autowired
+    private EntryRepository entryRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Override
+    public List<Entry> getAll() {
+        return entryRepository.findAll();
+    }
+
+    @Override
+    public Entry findById(Long id) {
+        return entryRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Entry save(Entry entry) {
+        if (entry.getCustomer() != null && entry.getCustomer().getId() != null) {
+            Customer existing = customerRepository.findById(entry.getCustomer().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Customer not found with ID " + entry.getCustomer().getId()));
+            entry.setCustomer(existing);
+        }
+        return entryRepository.save(entry);
+    }
+
+    @Override
+    public Entry update(Long id, Entry entry) {
+        entry.setId(id);
+        return save(entry);
+    }
+
+    @Override
+    public void delete(Long id) {
+        entryRepository.deleteById(id);
+    }
+}

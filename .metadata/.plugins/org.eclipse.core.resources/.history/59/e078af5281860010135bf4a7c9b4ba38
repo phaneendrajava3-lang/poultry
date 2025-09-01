@@ -1,0 +1,32 @@
+package com.poultry.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.poultry.model.TripDetails;
+
+public interface TripDetailsRepository extends JpaRepository<TripDetails, Long> {
+    TripDetails findByTripNumber(int tripNumber);
+
+    @Query("SELECT COUNT(t) FROM TripDetails t WHERE MONTH(t.startDate) = :month AND YEAR(t.startDate) = :year")
+    long countByMonth(@Param("month") int month, @Param("year") int year);
+
+    @Query("SELECT SUM(t.fuelCost) FROM TripDetails t WHERE MONTH(t.startDate) = :month AND YEAR(t.startDate) = :year")
+    Double sumFuelCostByMonth(@Param("month") int month, @Param("year") int year);
+
+    @Query("SELECT SUM(t.deadChicks) FROM TripDetails t WHERE MONTH(t.startDate) = :month AND YEAR(t.startDate) = :year")
+    Integer sumDeadChicksByMonth(@Param("month") int month, @Param("year") int year);
+
+    @Query("SELECT t FROM TripDetails t WHERE MONTH(t.startDate) = :month AND YEAR(t.startDate) = :year")
+    List<TripDetails> findByMonthAndYear(@Param("month") int month, @Param("year") int year);
+
+    TripDetails findFirstByOrderByTripNumberDesc();
+    
+    void deleteByTripNumber(int tripNumber);
+
+    // Fetch latest 10 trips for dashboard
+    List<TripDetails> findTop10ByOrderByStartDateDesc();
+}

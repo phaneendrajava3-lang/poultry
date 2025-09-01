@@ -1,0 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<div class="d-flex gap-2 mb-4">
+  <a class="btn btn-primary" href="${pageContext.request.contextPath}/customers">Manage Customers</a>
+  <a class="btn btn-primary" href="${pageContext.request.contextPath}/drivers">Manage Drivers</a>
+  <a class="btn btn-primary" href="${pageContext.request.contextPath}/vans">Manage Vans</a>
+  <a class="btn btn-primary" href="${pageContext.request.contextPath}/users">Manage Users</a>
+</div>

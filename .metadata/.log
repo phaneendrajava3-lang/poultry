@@ -1,1508 +1,4 @@
-!SESSION 2025-07-12 13:56:29.152 -----------------------------------------------
-eclipse.buildId=4.36.0.20250605-1300
-java.version=21.0.7
-java.vendor=Eclipse Adoptium
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
-Framework arguments:  -product org.eclipse.epp.package.java.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
-
-!ENTRY ch.qos.logback.classic 1 0 2025-07-12 13:56:34.803
-!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
-
-!ENTRY ch.qos.logback.classic 1 0 2025-07-12 13:56:49.228
-!MESSAGE Logback config file: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.100.20250418-1315.xml
-
-!ENTRY org.eclipse.egit.ui 2 0 2025-07-12 13:57:06.287
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\dell'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.eclipse.lsp4e 4 0 2025-07-12 13:57:54.374
-!MESSAGE Unexpected null value present!
-!STACK 0
-java.lang.IllegalStateException: Unexpected null value present!
-	at org.eclipse.lsp4e.internal.NullSafetyHelper.castNonNull(NullSafetyHelper.java:36)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticTokensClient.requestFullSemanticTokens(SemanticTokensClient.java:45)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.fullReconcile(SemanticHighlightReconcilerStrategy.java:239)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.initialReconcile(SemanticHighlightReconcilerStrategy.java:258)
-	at org.eclipse.ui.internal.genericeditor.CompositeReconcilerStrategy.initialReconcile(CompositeReconcilerStrategy.java:48)
-	at org.eclipse.jface.text.reconciler.Reconciler.initialProcess(Reconciler.java:223)
-	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 13:57:59.189
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findNext: {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@24841b02)} vs {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@24841b02)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@24841b02),  for 'org.eclipse.ui.edit.findNext',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@1d4cf8ea), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@24841b02),  for 'org.eclipse.ui.edit.findNext',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@1d4cf8ea), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.FindNextAction.update(FindNextAction.java:238)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 13:57:59.192
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findPrevious: {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@39198a86)} vs {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@39198a86)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@39198a86),  for 'org.eclipse.ui.edit.findPrevious',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@1d4cf8ea), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@39198a86),  for 'org.eclipse.ui.edit.findPrevious',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@1d4cf8ea), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.FindNextAction.update(FindNextAction.java:238)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 13:57:59.194
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findIncremental: {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@2cfe5f7c)} vs {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@2cfe5f7c)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@2cfe5f7c),  for 'org.eclipse.ui.edit.findIncremental',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@1d4cf8ea), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@2cfe5f7c),  for 'org.eclipse.ui.edit.findIncremental',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@1d4cf8ea), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.IncrementalFindAction.update(IncrementalFindAction.java:118)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 13:57:59.196
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findIncrementalReverse: {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@88edd90)} vs {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@88edd90)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@88edd90),  for 'org.eclipse.ui.edit.findIncrementalReverse',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@1d4cf8ea), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@88edd90),  for 'org.eclipse.ui.edit.findIncrementalReverse',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@1d4cf8ea), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.IncrementalFindAction.update(IncrementalFindAction.java:118)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-07-12 13:58:54.902
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-
-!ENTRY org.eclipse.lsp4e 4 0 2025-07-12 21:39:54.585
-!MESSAGE Unexpected null value present!
-!STACK 0
-java.lang.IllegalStateException: Unexpected null value present!
-	at org.eclipse.lsp4e.internal.NullSafetyHelper.castNonNull(NullSafetyHelper.java:36)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticTokensClient.requestFullSemanticTokens(SemanticTokensClient.java:45)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.fullReconcile(SemanticHighlightReconcilerStrategy.java:239)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.initialReconcile(SemanticHighlightReconcilerStrategy.java:258)
-	at org.eclipse.ui.internal.genericeditor.CompositeReconcilerStrategy.initialReconcile(CompositeReconcilerStrategy.java:48)
-	at org.eclipse.jface.text.reconciler.Reconciler.initialProcess(Reconciler.java:223)
-	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
-
-!ENTRY org.eclipse.lsp4e 2 0 2025-07-12 21:40:02.841
-!MESSAGE Could not get trigger characters due to timeout after 50 milliseconds
-!STACK 0
-java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.eclipse.lsp4e.operations.completion.LSContentAssistProcessor.getFuture(LSContentAssistProcessor.java:339)
-	at org.eclipse.lsp4e.operations.completion.LSContentAssistProcessor.getCompletionProposalAutoActivationCharacters(LSContentAssistProcessor.java:380)
-	at org.eclipse.jface.text.contentassist.IContentAssistProcessorExtension$1.isCompletionProposalAutoActivation(IContentAssistProcessorExtension.java:115)
-	at org.eclipse.jface.text.contentassist.ContentAssistant.getAutoActivationTriggerType(ContentAssistant.java:1249)
-	at org.eclipse.jface.text.contentassist.ContentAssistant$AutoAssistListener.keyPressed(ContentAssistant.java:346)
-	at org.eclipse.jface.text.contentassist.ContentAssistant$AutoAssistListener.verifyKey(ContentAssistant.java:375)
-	at org.eclipse.jface.text.TextViewer$VerifyKeyListenersManager.verifyKey(TextViewer.java:482)
-	at org.eclipse.swt.custom.StyledTextListener.handleEvent(StyledTextListener.java:70)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:860)
-	at org.eclipse.swt.custom.StyledText.handleKeyDown(StyledText.java:5742)
-	at org.eclipse.swt.custom.StyledText.lambda$30(StyledText.java:5426)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1265)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1261)
-	at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1748)
-	at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:4902)
-	at org.eclipse.swt.widgets.Canvas.WM_CHAR(Canvas.java:341)
-	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4779)
-	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:336)
-	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5106)
-	at org.eclipse.swt.internal.win32.OS.DispatchMessage(Native Method)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3722)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.lsp4e 2 0 2025-07-12 21:40:02.895
-!MESSAGE Could not get trigger characters due to timeout after 50 milliseconds
-!STACK 0
-java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.eclipse.lsp4e.operations.completion.LSContentAssistProcessor.getFuture(LSContentAssistProcessor.java:339)
-	at org.eclipse.lsp4e.operations.completion.LSContentAssistProcessor.getContextInformationAutoActivationCharacters(LSContentAssistProcessor.java:387)
-	at org.eclipse.jface.text.contentassist.IContentAssistProcessorExtension$1.isContextInformationAutoActivation(IContentAssistProcessorExtension.java:128)
-	at org.eclipse.jface.text.contentassist.ContentAssistant.getAutoActivationTriggerType(ContentAssistant.java:1252)
-	at org.eclipse.jface.text.contentassist.ContentAssistant$AutoAssistListener.keyPressed(ContentAssistant.java:346)
-	at org.eclipse.jface.text.contentassist.ContentAssistant$AutoAssistListener.verifyKey(ContentAssistant.java:375)
-	at org.eclipse.jface.text.TextViewer$VerifyKeyListenersManager.verifyKey(TextViewer.java:482)
-	at org.eclipse.swt.custom.StyledTextListener.handleEvent(StyledTextListener.java:70)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:860)
-	at org.eclipse.swt.custom.StyledText.handleKeyDown(StyledText.java:5742)
-	at org.eclipse.swt.custom.StyledText.lambda$30(StyledText.java:5426)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1265)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1261)
-	at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1748)
-	at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:4902)
-	at org.eclipse.swt.widgets.Canvas.WM_CHAR(Canvas.java:341)
-	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4779)
-	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:336)
-	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5106)
-	at org.eclipse.swt.internal.win32.OS.DispatchMessage(Native Method)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3722)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.lsp4e 2 0 2025-07-12 21:40:02.956
-!MESSAGE Could not get language server due to timeout after 50 milliseconds
-!STACK 0
-java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.eclipse.lsp4e.LanguageServers.matches(LanguageServers.java:225)
-	at java.base/java.util.stream.MatchOps$1MatchSink.accept(MatchOps.java:90)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.Spliterators$IteratorSpliterator.tryAdvance(Spliterators.java:1950)
-	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129)
-	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:230)
-	at java.base/java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:196)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.anyMatch(ReferencePipeline.java:632)
-	at org.eclipse.lsp4e.LanguageServers$LanguageServerDocumentExecutor.anyMatching(LanguageServers.java:296)
-	at org.eclipse.lsp4e.format.DocumentFormatOnTypeAutoEditStrategy.customizeDocumentCommand(DocumentFormatOnTypeAutoEditStrategy.java:36)
-	at org.eclipse.jface.text.TextViewer.customizeDocumentCommand(TextViewer.java:3715)
-	at org.eclipse.jface.text.TextViewer.handleVerifyEvent(TextViewer.java:3750)
-	at org.eclipse.jface.text.source.projection.ProjectionViewer.handleVerifyEvent(ProjectionViewer.java:1250)
-	at org.eclipse.jface.text.TextViewer$TextVerifyListener.verifyText(TextViewer.java:428)
-	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:311)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:860)
-	at org.eclipse.swt.custom.StyledText.modifyContent(StyledText.java:7101)
-	at org.eclipse.swt.custom.StyledText.sendKeyEvent(StyledText.java:8033)
-	at org.eclipse.swt.custom.StyledText.doContent(StyledText.java:2032)
-	at org.eclipse.swt.custom.StyledText.handleKey(StyledText.java:5716)
-	at org.eclipse.swt.custom.StyledText.handleKeyDown(StyledText.java:5747)
-	at org.eclipse.swt.custom.StyledText.lambda$30(StyledText.java:5426)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1265)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1261)
-	at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1748)
-	at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:4902)
-	at org.eclipse.swt.widgets.Canvas.WM_CHAR(Canvas.java:341)
-	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4779)
-	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:336)
-	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5106)
-	at org.eclipse.swt.internal.win32.OS.DispatchMessage(Native Method)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3722)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-07-12 21:41:46.244
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-
-!ENTRY org.eclipse.m2e.logback.appender 4 0 2025-07-12 21:57:40.657
-!MESSAGE File not found: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\poultry_backend\pom.xml.
-!STACK 1
-org.eclipse.core.internal.resources.ResourceException(/poultry_backend/pom.xml)[368]: org.eclipse.core.runtime.CoreException: File not found: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\poultry_backend\pom.xml.
-	at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:32)
-	at org.eclipse.core.internal.filesystem.local.LocalFile.handleReadIOException(LocalFile.java:542)
-	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:523)
-	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:882)
-	at org.eclipse.core.internal.resources.File.getContents(File.java:352)
-	at org.eclipse.core.internal.resources.File.getContents(File.java:342)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:589)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:491)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:370)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:322)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.getProjectFacade(MavenBuilder.java:146)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.lambda$0(MavenBuilder.java:84)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:458)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:339)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:278)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:83)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:192)
-	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1077)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:296)
-	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:352)
-	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:441)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:444)
-	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:555)
-	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:503)
-	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:585)
-	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:207)
-	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:300)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-Caused by: java.io.FileNotFoundException: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\poultry_backend\pom.xml (The system cannot find the file specified)
-	at java.base/java.io.FileInputStream.open0(Native Method)
-	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
-	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
-	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:521)
-	... 27 more
-!SUBENTRY 1 org.eclipse.core.resources 4 368 2025-07-12 21:57:40.664
-!MESSAGE File not found: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\poultry_backend\pom.xml.
-!STACK 1
-org.eclipse.core.runtime.CoreException: File not found: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\poultry_backend\pom.xml.
-	at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:32)
-	at org.eclipse.core.internal.filesystem.local.LocalFile.handleReadIOException(LocalFile.java:542)
-	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:523)
-	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:882)
-	at org.eclipse.core.internal.resources.File.getContents(File.java:352)
-	at org.eclipse.core.internal.resources.File.getContents(File.java:342)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:589)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:491)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:370)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:322)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.getProjectFacade(MavenBuilder.java:146)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.lambda$0(MavenBuilder.java:84)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:458)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:339)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:278)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:83)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:192)
-	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1077)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:296)
-	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:352)
-	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:441)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:444)
-	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:555)
-	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:503)
-	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:585)
-	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:207)
-	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:300)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-Caused by: java.io.FileNotFoundException: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\poultry_backend\pom.xml (The system cannot find the file specified)
-	at java.base/java.io.FileInputStream.open0(Native Method)
-	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
-	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
-	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:521)
-	... 27 more
-!SUBENTRY 2 org.eclipse.core.filesystem 4 269 2025-07-12 21:57:40.664
-!MESSAGE File not found: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\poultry_backend\pom.xml.
-!STACK 0
-java.io.FileNotFoundException: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\poultry_backend\pom.xml (The system cannot find the file specified)
-	at java.base/java.io.FileInputStream.open0(Native Method)
-	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
-	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
-	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:521)
-	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:882)
-	at org.eclipse.core.internal.resources.File.getContents(File.java:352)
-	at org.eclipse.core.internal.resources.File.getContents(File.java:342)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:589)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:491)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:370)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:322)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.getProjectFacade(MavenBuilder.java:146)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.lambda$0(MavenBuilder.java:84)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:458)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:339)
-	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:278)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:83)
-	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:192)
-	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1077)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:296)
-	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:352)
-	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:441)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:444)
-	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:555)
-	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:503)
-	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:585)
-	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:207)
-	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:300)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-07-12 21:59:29.196
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:44:05.239
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findNext: {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@22246534)} vs {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@22246534)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@22246534),  for 'org.eclipse.ui.edit.findNext',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@22246534),  for 'org.eclipse.ui.edit.findNext',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.FindNextAction.update(FindNextAction.java:238)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:44:05.244
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findPrevious: {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@305dc1)} vs {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@305dc1)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@305dc1),  for 'org.eclipse.ui.edit.findPrevious',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@305dc1),  for 'org.eclipse.ui.edit.findPrevious',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.FindNextAction.update(FindNextAction.java:238)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:44:05.248
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findIncremental: {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@5c6a0dbf)} vs {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@5c6a0dbf)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@5c6a0dbf),  for 'org.eclipse.ui.edit.findIncremental',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@5c6a0dbf),  for 'org.eclipse.ui.edit.findIncremental',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.IncrementalFindAction.update(IncrementalFindAction.java:118)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:44:05.252
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findIncrementalReverse: {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@e7f00a9)} vs {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@e7f00a9)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@e7f00a9),  for 'org.eclipse.ui.edit.findIncrementalReverse',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@e7f00a9),  for 'org.eclipse.ui.edit.findIncrementalReverse',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.IncrementalFindAction.update(IncrementalFindAction.java:118)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:44:05.390
-!MESSAGE Conflicting handlers for org.eclipse.ui.editors.quickdiff.revertLine: {ActionHandler(org.eclipse.ui.internal.editors.quickdiff.RevertLineAction@1627d41a)} vs {ActionHandler(org.eclipse.ui.internal.editors.quickdiff.RevertLineAction@1627d41a)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.internal.editors.quickdiff.RevertLineAction@1627d41a),  for 'org.eclipse.ui.editors.quickdiff.revertLine',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.internal.editors.quickdiff.RevertLineAction@1627d41a),  for 'org.eclipse.ui.editors.quickdiff.revertLine',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.TextEditorAction.update(TextEditorAction.java:99)
-	at org.eclipse.ui.internal.editors.quickdiff.QuickDiffRestoreAction.update(QuickDiffRestoreAction.java:96)
-	at org.eclipse.ui.internal.editors.quickdiff.QuickDiffRestoreAction.selectionChanged(QuickDiffRestoreAction.java:103)
-	at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2725)
-	at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2655)
-	at org.eclipse.jface.text.TextViewer.postSelectionChanged(TextViewer.java:2638)
-	at org.eclipse.jface.util.Throttler.lambda$0(Throttler.java:66)
-	at org.eclipse.jface.util.Throttler.lambda$1(Throttler.java:79)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:44:16.064
-!MESSAGE Conflicting handlers for org.eclipse.ui.editors.quickdiff.revert: {ActionHandler(org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction@62bfe8bd)} vs {ActionHandler(org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction@62bfe8bd)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction@62bfe8bd),  for 'org.eclipse.ui.editors.quickdiff.revert',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction@62bfe8bd),  for 'org.eclipse.ui.editors.quickdiff.revert',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@667084e8), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction.update(CompositeRevertAction.java:71)
-	at org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction.selectionChanged(CompositeRevertAction.java:80)
-	at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2725)
-	at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2655)
-	at org.eclipse.jface.text.TextViewer.postSelectionChanged(TextViewer.java:2638)
-	at org.eclipse.jface.util.Throttler.lambda$0(Throttler.java:66)
-	at org.eclipse.jface.util.Throttler.lambda$1(Throttler.java:79)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:45:53.954
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findNext: {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@4346dc81)} vs {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@4346dc81)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@4346dc81),  for 'org.eclipse.ui.edit.findNext',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@4346dc81),  for 'org.eclipse.ui.edit.findNext',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.FindNextAction.update(FindNextAction.java:238)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:45:53.955
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findPrevious: {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@16f98160)} vs {ActionHandler(org.eclipse.ui.texteditor.FindNextAction@16f98160)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@16f98160),  for 'org.eclipse.ui.edit.findPrevious',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.FindNextAction@16f98160),  for 'org.eclipse.ui.edit.findPrevious',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.FindNextAction.update(FindNextAction.java:238)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:45:53.957
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findIncremental: {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@52bb1c7d)} vs {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@52bb1c7d)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@52bb1c7d),  for 'org.eclipse.ui.edit.findIncremental',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@52bb1c7d),  for 'org.eclipse.ui.edit.findIncremental',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.IncrementalFindAction.update(IncrementalFindAction.java:118)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:45:53.958
-!MESSAGE Conflicting handlers for org.eclipse.ui.edit.findIncrementalReverse: {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@422b180)} vs {ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@422b180)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@422b180),  for 'org.eclipse.ui.edit.findIncrementalReverse',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.texteditor.IncrementalFindAction@422b180),  for 'org.eclipse.ui.edit.findIncrementalReverse',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.IncrementalFindAction.update(IncrementalFindAction.java:118)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateAction(AbstractTextEditor.java:5390)
-	at org.eclipse.ui.texteditor.AbstractTextEditor.updateContentDependentActions(AbstractTextEditor.java:5474)
-	at org.eclipse.ui.texteditor.AbstractTextEditor$TextListener.lambda$0(AbstractTextEditor.java:626)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:45:54.025
-!MESSAGE Conflicting handlers for org.eclipse.ui.editors.quickdiff.revertLine: {ActionHandler(org.eclipse.ui.internal.editors.quickdiff.RevertLineAction@1fd30ee1)} vs {ActionHandler(org.eclipse.ui.internal.editors.quickdiff.RevertLineAction@1fd30ee1)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.internal.editors.quickdiff.RevertLineAction@1fd30ee1),  for 'org.eclipse.ui.editors.quickdiff.revertLine',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.internal.editors.quickdiff.RevertLineAction@1fd30ee1),  for 'org.eclipse.ui.editors.quickdiff.revertLine',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.texteditor.TextEditorAction.update(TextEditorAction.java:99)
-	at org.eclipse.ui.internal.editors.quickdiff.QuickDiffRestoreAction.update(QuickDiffRestoreAction.java:96)
-	at org.eclipse.ui.internal.editors.quickdiff.QuickDiffRestoreAction.selectionChanged(QuickDiffRestoreAction.java:103)
-	at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2725)
-	at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2655)
-	at org.eclipse.jface.text.TextViewer.postSelectionChanged(TextViewer.java:2638)
-	at org.eclipse.jface.util.Throttler.lambda$0(Throttler.java:66)
-	at org.eclipse.jface.util.Throttler.lambda$1(Throttler.java:79)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.ui 4 4 2025-07-12 22:45:58.203
-!MESSAGE Conflicting handlers for org.eclipse.ui.editors.quickdiff.revert: {ActionHandler(org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction@7facc0cc)} vs {ActionHandler(org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction@7facc0cc)} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-!STACK 0
-java.lang.IllegalStateException: Conflicting handlers: {[ActionHandler(org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction@7facc0cc),  for 'org.eclipse.ui.editors.quickdiff.revert',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} vs {[ActionHandler(org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction@7facc0cc),  for 'org.eclipse.ui.editors.quickdiff.revert',  in PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext, activeWhen=ActivePartExpression(org.eclipse.mylyn.internal.wikitext.ui.editor.MarkupEditor@42eb2dc1), active=true, sourcePriority=1048576, participating=true]} in: PartImpl (org.eclipse.e4.ui.compatibility.editor)  removeOnHide org.eclipse.mylyn.wikitext.ui.editor.markupEditorContext
-	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:143)
-	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:265)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:230)
-	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:99)
-	at org.eclipse.ui.internal.handlers.E4HandlerProxy.handlerChanged(E4HandlerProxy.java:115)
-	at org.eclipse.core.commands.AbstractHandler.fireHandlerChanged(AbstractHandler.java:77)
-	at org.eclipse.jface.commands.ActionHandler.lambda$0(ActionHandler.java:84)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:52)
-	at org.eclipse.jface.action.AbstractAction.firePropertyChange(AbstractAction.java:75)
-	at org.eclipse.jface.action.Action.setEnabled(Action.java:541)
-	at org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction.update(CompositeRevertAction.java:71)
-	at org.eclipse.ui.internal.editors.quickdiff.CompositeRevertAction.selectionChanged(CompositeRevertAction.java:80)
-	at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2725)
-	at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2655)
-	at org.eclipse.jface.text.TextViewer.postSelectionChanged(TextViewer.java:2638)
-	at org.eclipse.jface.util.Throttler.lambda$0(Throttler.java:66)
-	at org.eclipse.jface.util.Throttler.lambda$1(Throttler.java:79)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4111)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3727)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-!SESSION 2025-07-13 11:14:04.469 -----------------------------------------------
-eclipse.buildId=4.36.0.20250605-1300
-java.version=21.0.7
-java.vendor=Eclipse Adoptium
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
-Framework arguments:  -product org.eclipse.epp.package.java.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
-
-!ENTRY ch.qos.logback.classic 1 0 2025-07-13 11:14:48.443
-!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
-
-!ENTRY ch.qos.logback.classic 1 0 2025-07-13 11:15:08.430
-!MESSAGE Logback config file: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.100.20250418-1315.xml
-
-!ENTRY org.eclipse.egit.ui 2 0 2025-07-13 11:16:38.462
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\dell'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-07-13 12:01:52.703
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-
-!ENTRY org.eclipse.lsp4e 4 0 2025-07-13 15:26:48.235
-!MESSAGE Unexpected null value present!
-!STACK 0
-java.lang.IllegalStateException: Unexpected null value present!
-	at org.eclipse.lsp4e.internal.NullSafetyHelper.castNonNull(NullSafetyHelper.java:36)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticTokensClient.requestFullSemanticTokens(SemanticTokensClient.java:45)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.fullReconcile(SemanticHighlightReconcilerStrategy.java:239)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.initialReconcile(SemanticHighlightReconcilerStrategy.java:258)
-	at org.eclipse.ui.internal.genericeditor.CompositeReconcilerStrategy.initialReconcile(CompositeReconcilerStrategy.java:48)
-	at org.eclipse.jface.text.reconciler.Reconciler.initialProcess(Reconciler.java:223)
-	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
-
-!ENTRY org.eclipse.lsp4e 2 0 2025-07-13 15:26:58.352
-!MESSAGE Could not get trigger characters due to timeout after 50 milliseconds
-!STACK 0
-java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.eclipse.lsp4e.operations.completion.LSContentAssistProcessor.getFuture(LSContentAssistProcessor.java:339)
-	at org.eclipse.lsp4e.operations.completion.LSContentAssistProcessor.getCompletionProposalAutoActivationCharacters(LSContentAssistProcessor.java:380)
-	at org.eclipse.jface.text.contentassist.IContentAssistProcessorExtension$1.isCompletionProposalAutoActivation(IContentAssistProcessorExtension.java:115)
-	at org.eclipse.jface.text.contentassist.ContentAssistant.getAutoActivationTriggerType(ContentAssistant.java:1249)
-	at org.eclipse.jface.text.contentassist.ContentAssistant$AutoAssistListener.keyPressed(ContentAssistant.java:346)
-	at org.eclipse.jface.text.contentassist.ContentAssistant$AutoAssistListener.verifyKey(ContentAssistant.java:375)
-	at org.eclipse.jface.text.TextViewer$VerifyKeyListenersManager.verifyKey(TextViewer.java:482)
-	at org.eclipse.swt.custom.StyledTextListener.handleEvent(StyledTextListener.java:70)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:860)
-	at org.eclipse.swt.custom.StyledText.handleKeyDown(StyledText.java:5742)
-	at org.eclipse.swt.custom.StyledText.lambda$30(StyledText.java:5426)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1265)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1261)
-	at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1748)
-	at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:4902)
-	at org.eclipse.swt.widgets.Canvas.WM_CHAR(Canvas.java:341)
-	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4779)
-	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:336)
-	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5106)
-	at org.eclipse.swt.internal.win32.OS.DispatchMessage(Native Method)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3722)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.lsp4e 2 0 2025-07-13 15:26:58.405
-!MESSAGE Could not get trigger characters due to timeout after 50 milliseconds
-!STACK 0
-java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.eclipse.lsp4e.operations.completion.LSContentAssistProcessor.getFuture(LSContentAssistProcessor.java:339)
-	at org.eclipse.lsp4e.operations.completion.LSContentAssistProcessor.getContextInformationAutoActivationCharacters(LSContentAssistProcessor.java:387)
-	at org.eclipse.jface.text.contentassist.IContentAssistProcessorExtension$1.isContextInformationAutoActivation(IContentAssistProcessorExtension.java:128)
-	at org.eclipse.jface.text.contentassist.ContentAssistant.getAutoActivationTriggerType(ContentAssistant.java:1252)
-	at org.eclipse.jface.text.contentassist.ContentAssistant$AutoAssistListener.keyPressed(ContentAssistant.java:346)
-	at org.eclipse.jface.text.contentassist.ContentAssistant$AutoAssistListener.verifyKey(ContentAssistant.java:375)
-	at org.eclipse.jface.text.TextViewer$VerifyKeyListenersManager.verifyKey(TextViewer.java:482)
-	at org.eclipse.swt.custom.StyledTextListener.handleEvent(StyledTextListener.java:70)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:860)
-	at org.eclipse.swt.custom.StyledText.handleKeyDown(StyledText.java:5742)
-	at org.eclipse.swt.custom.StyledText.lambda$30(StyledText.java:5426)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1265)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1261)
-	at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1748)
-	at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:4902)
-	at org.eclipse.swt.widgets.Canvas.WM_CHAR(Canvas.java:341)
-	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4779)
-	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:336)
-	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5106)
-	at org.eclipse.swt.internal.win32.OS.DispatchMessage(Native Method)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3722)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.lsp4e 2 0 2025-07-13 15:26:58.464
-!MESSAGE Could not get language server due to timeout after 50 milliseconds
-!STACK 0
-java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.eclipse.lsp4e.LanguageServers.matches(LanguageServers.java:225)
-	at java.base/java.util.stream.MatchOps$1MatchSink.accept(MatchOps.java:90)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.Spliterators$IteratorSpliterator.tryAdvance(Spliterators.java:1950)
-	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129)
-	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:230)
-	at java.base/java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:196)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.anyMatch(ReferencePipeline.java:632)
-	at org.eclipse.lsp4e.LanguageServers$LanguageServerDocumentExecutor.anyMatching(LanguageServers.java:296)
-	at org.eclipse.lsp4e.format.DocumentFormatOnTypeAutoEditStrategy.customizeDocumentCommand(DocumentFormatOnTypeAutoEditStrategy.java:36)
-	at org.eclipse.jface.text.TextViewer.customizeDocumentCommand(TextViewer.java:3715)
-	at org.eclipse.jface.text.TextViewer.handleVerifyEvent(TextViewer.java:3750)
-	at org.eclipse.jface.text.source.projection.ProjectionViewer.handleVerifyEvent(ProjectionViewer.java:1250)
-	at org.eclipse.jface.text.TextViewer$TextVerifyListener.verifyText(TextViewer.java:428)
-	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:311)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:860)
-	at org.eclipse.swt.custom.StyledText.modifyContent(StyledText.java:7101)
-	at org.eclipse.swt.custom.StyledText.sendKeyEvent(StyledText.java:8033)
-	at org.eclipse.swt.custom.StyledText.doContent(StyledText.java:2032)
-	at org.eclipse.swt.custom.StyledText.handleKey(StyledText.java:5716)
-	at org.eclipse.swt.custom.StyledText.handleKeyDown(StyledText.java:5747)
-	at org.eclipse.swt.custom.StyledText.lambda$30(StyledText.java:5426)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1238)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1223)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1265)
-	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1261)
-	at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1748)
-	at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:4902)
-	at org.eclipse.swt.widgets.Canvas.WM_CHAR(Canvas.java:341)
-	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4779)
-	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:336)
-	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5106)
-	at org.eclipse.swt.internal.win32.OS.DispatchMessage(Native Method)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3722)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-07-13 15:29:34.006
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-
-!ENTRY org.eclipse.lsp4e 2 0 2025-07-13 15:29:51.244
-!MESSAGE Could not get hover region due to timeout after 1000 milliseconds
-!STACK 0
-java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.eclipse.lsp4e.operations.hover.LSPTextHover.getHoverRegion(LSPTextHover.java:151)
-	at org.eclipse.ui.internal.genericeditor.hover.CompositeTextHover.getHoverRegion(CompositeTextHover.java:101)
-	at org.eclipse.jface.text.TextViewerHoverManager.computeInformation(TextViewerHoverManager.java:128)
-	at org.eclipse.jface.text.AbstractInformationControlManager.doShowInformation(AbstractInformationControlManager.java:1101)
-	at org.eclipse.jface.text.AbstractHoverInformationControlManager$MouseTracker.mouseHover(AbstractHoverInformationControlManager.java:511)
-	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:246)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4338)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1214)
-	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4136)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3724)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.lsp4e 2 0 2025-07-13 15:29:52.246
-!MESSAGE Could not get hover information due to timeout after 1000 milliseconds
-!STACK 0
-java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.eclipse.lsp4e.operations.hover.LSPTextHover.getHoverInfo(LSPTextHover.java:73)
-	at org.eclipse.ui.internal.genericeditor.hover.CompositeTextHover.getHoverInfo2(CompositeTextHover.java:60)
-	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-07-13 17:27:24.900
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-
-!ENTRY org.eclipse.lsp4e 4 0 2025-07-13 17:27:55.633
-!MESSAGE Unexpected null value present!
-!STACK 0
-java.lang.IllegalStateException: Unexpected null value present!
-	at org.eclipse.lsp4e.internal.NullSafetyHelper.castNonNull(NullSafetyHelper.java:36)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticTokensClient.requestFullSemanticTokens(SemanticTokensClient.java:45)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.fullReconcile(SemanticHighlightReconcilerStrategy.java:239)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.fullReconcileOnce(SemanticHighlightReconcilerStrategy.java:278)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.reconcile(SemanticHighlightReconcilerStrategy.java:263)
-	at org.eclipse.ui.internal.genericeditor.CompositeReconcilerStrategy.reconcile(CompositeReconcilerStrategy.java:63)
-	at org.eclipse.jface.text.reconciler.Reconciler.process(Reconciler.java:149)
-	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
-
-!ENTRY org.eclipse.ui 4 0 2025-07-13 17:28:20.070
-!MESSAGE Unhandled event loop exception
-!STACK 0
-org.eclipse.swt.SWTException: Widget is disposed
-	at org.eclipse.swt.SWT.error(SWT.java:4945)
-	at org.eclipse.swt.SWT.error(SWT.java:4860)
-	at org.eclipse.swt.SWT.error(SWT.java:4831)
-	at org.eclipse.swt.widgets.Widget.error(Widget.java:507)
-	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:426)
-	at org.eclipse.swt.widgets.Menu.indexOf(Menu.java:832)
-	at org.eclipse.swt.widgets.Menu.wmTimer(Menu.java:1352)
-	at org.eclipse.swt.widgets.Control.WM_TIMER(Control.java:5715)
-	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4863)
-	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:336)
-	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1494)
-	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2387)
-	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5106)
-	at org.eclipse.swt.internal.win32.OS.TrackPopupMenu(Native Method)
-	at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:241)
-	at org.eclipse.swt.widgets.Display.runPopups(Display.java:4177)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3718)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:678)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:583)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
-	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:185)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:219)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:627)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
-
-!ENTRY org.eclipse.lsp4e 4 0 2025-07-13 18:24:17.757
-!MESSAGE Unexpected null value present!
-!STACK 0
-java.lang.IllegalStateException: Unexpected null value present!
-	at org.eclipse.lsp4e.internal.NullSafetyHelper.castNonNull(NullSafetyHelper.java:36)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticTokensClient.requestFullSemanticTokens(SemanticTokensClient.java:45)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.fullReconcile(SemanticHighlightReconcilerStrategy.java:239)
-	at org.eclipse.lsp4e.operations.semanticTokens.SemanticHighlightReconcilerStrategy.initialReconcile(SemanticHighlightReconcilerStrategy.java:258)
-	at org.eclipse.ui.internal.genericeditor.CompositeReconcilerStrategy.initialReconcile(CompositeReconcilerStrategy.java:48)
-	at org.eclipse.jface.text.reconciler.Reconciler.initialProcess(Reconciler.java:223)
-	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
-!SESSION 2025-07-24 19:19:57.210 -----------------------------------------------
-eclipse.buildId=4.36.0.20250605-1300
-java.version=21.0.7
-java.vendor=Eclipse Adoptium
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
-Framework arguments:  -product org.eclipse.epp.package.java.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
-
-!ENTRY ch.qos.logback.classic 1 0 2025-07-24 19:20:04.568
-!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
-
-!ENTRY ch.qos.logback.classic 1 0 2025-07-24 19:20:15.405
-!MESSAGE Logback config file: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.100.20250418-1315.xml
-
-!ENTRY org.eclipse.egit.ui 2 0 2025-07-24 19:21:27.778
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\dell'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-07-24 19:22:50.315
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-!SESSION 2025-08-02 12:56:22.001 -----------------------------------------------
-eclipse.buildId=4.36.0.20250605-1300
-java.version=21.0.7
-java.vendor=Eclipse Adoptium
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
-Framework arguments:  -product org.eclipse.epp.package.java.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
-
-!ENTRY ch.qos.logback.classic 1 0 2025-08-02 12:56:31.169
-!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
-
-!ENTRY ch.qos.logback.classic 1 0 2025-08-02 12:56:41.633
-!MESSAGE Logback config file: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.100.20250418-1315.xml
-
-!ENTRY org.eclipse.egit.ui 2 0 2025-08-02 12:57:07.230
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\dell'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-08-02 12:58:24.581
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-08-02 13:44:52.645
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-!SESSION 2025-08-10 19:28:15.685 -----------------------------------------------
-eclipse.buildId=4.36.0.20250605-1300
-java.version=21.0.7
-java.vendor=Eclipse Adoptium
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
-Framework arguments:  -product org.eclipse.epp.package.java.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
-
-!ENTRY ch.qos.logback.classic 1 0 2025-08-10 19:28:41.602
-!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
-
-!ENTRY org.eclipse.core.resources 2 10035 2025-08-10 19:29:40.676
-!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
-
-!ENTRY ch.qos.logback.classic 1 0 2025-08-10 19:29:45.457
-!MESSAGE Logback config file: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.100.20250418-1315.xml
-
-!ENTRY org.eclipse.egit.ui 2 0 2025-08-10 19:30:26.567
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\dell'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-08-10 19:31:20.220
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-!SESSION 2025-08-13 10:19:17.293 -----------------------------------------------
-eclipse.buildId=4.36.0.20250605-1300
-java.version=21.0.8
-java.vendor=Eclipse Adoptium
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
-Framework arguments:  -product org.eclipse.epp.package.java.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product -data C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1
-
-!ENTRY ch.qos.logback.classic 1 0 2025-08-13 10:19:20.398
-!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
-
-!ENTRY org.eclipse.lemminx.uber-jar 4 0 2025-08-13 10:19:20.910
-!MESSAGE bundle org.eclipse.lemminx.uber-jar:0.31.0 (589) Component descriptor entry 'OSGI-INF/*.xml' not found
-
-!ENTRY ch.qos.logback.classic 1 0 2025-08-13 10:19:23.017
-!MESSAGE Logback config file: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.100.20250418-1315.xml
-
-!ENTRY org.eclipse.egit.ui 2 0 2025-08-13 10:20:19.367
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\dell'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.eclipse.e4.ui.workbench 2 0 2025-08-13 10:20:19.668
-!MESSAGE Removing PartDescriptorImpl with the "org.eclipse.tm.terminal.view.ui.TerminalsView" id and the "Terminal" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
-
-!ENTRY org.eclipse.e4.ui.workbench 2 0 2025-08-13 10:20:19.669
-!MESSAGE Removing PartDescriptorImpl with the "org.eclipse.tcf.te.ui.terminals.TerminalsView" id and the "Terminals (Old)" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-08-13 10:20:54.414
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-!SESSION 2025-08-23 12:15:06.556 -----------------------------------------------
+!SESSION 2025-08-31 09:35:41.625 -----------------------------------------------
 eclipse.buildId=4.36.0.20250605-1300
 java.version=21.0.8
 java.vendor=Eclipse Adoptium
@@ -1510,138 +6,349 @@ BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
 Framework arguments:  -product org.eclipse.epp.package.java.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
 
-!ENTRY ch.qos.logback.classic 1 0 2025-08-23 12:15:11.415
+This is a continuation of log file C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\.metadata\.bak_0.log
+Created Time: 2025-08-31 22:02:03.973
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:02:03.975
+!MESSAGE [Info]	[streamMessages] message 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:07:26.342
+!MESSAGE [Info]	[fetchCompletions] Request c540ca38-6822-466e-80cf-05b92386ea64 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 856.9033999964595ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:07:26.420
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:07:26.827
+!MESSAGE [Info]	[fetchCompletions] Request 1b116232-199d-4c0c-9eef-0677fe34c053 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 326.93680000305176ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:07:26.930
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [null]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:10:20.022
+!MESSAGE [Info]	[fetchCompletions] Request 0693d0f9-51ed-42c4-9c23-15093c356740 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 1258.6101000010967ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:10:20.024
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:14:00.998
+!MESSAGE [Info]	[fetchCompletions] Request af792357-be0a-49a0-9b55-00a61bb25712 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 1054.473600000143ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:14:01.001
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:14:01.562
+!MESSAGE [Info]	[fetchCompletions] Request e8ea7cb3-5257-4a68-89f7-982c694b3286 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 254.9387999996543ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:14:01.706
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [null]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:17:53.333
+!MESSAGE [Info]	[fetchCompletions] Request 8a8f9185-a7ce-4917-a12d-a935627b348c at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 1030.7436000034213ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:17:53.666
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:17:54.191
+!MESSAGE [Info]	[fetchCompletions] Request adce9504-9fdd-4452-b6c7-65dc5620a38f at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 348.7908000051975ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:17:54.303
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [null]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:20:21.455
+!MESSAGE [Info]	[fetchCompletions] Request b11016a4-46f3-42c0-9d81-06d980323fe3 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 876.2678999975324ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:20:21.456
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:21:54.616
+!MESSAGE [Info]	[fetchCompletions] Request 2e78350d-6341-4937-80eb-4f0a5f2a9cc2 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 330.840300001204ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:21:54.997
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:21:55.500
+!MESSAGE [Info]	[fetchCompletions] Request 98c88869-830b-4e26-8441-6f14aff11985 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 443.29839999973774ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:21:55.540
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:23:50.010
+!MESSAGE [Info]	[fetchCompletions] Request c0d1ea7c-f390-42bc-be4a-8861ae9f2a3f at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 501.4496999979019ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:23:50.061
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:23:50.421
+!MESSAGE [Info]	[fetchCompletions] Request dde8fe31-7c35-4351-8cec-1da65b80d1d8 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 311.77219999581575ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:23:50.484
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:23:50.838
+!MESSAGE [Info]	[fetchCompletions] Request b41d9b95-9f46-4741-a837-222efc175338 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 250.77099999785423ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:23:50.881
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:05.365
+!MESSAGE [Info]	[fetchCompletions] Request 29a81e56-ecf7-4408-8b5e-e70e15e9bf40 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 360.6033999994397ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:05.367
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:06.434
+!MESSAGE [Info]	[fetchCompletions] Request e613624b-fe06-4db0-ba72-87916c1c3f7f at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 270.23120000213385ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:06.794
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:07.109
+!MESSAGE [Info]	[fetchCompletions] Request 4f9b99b7-7442-41da-bc55-1920972e13fb at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 250.1279999986291ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:07.110
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:39.683
+!MESSAGE [Info]	[fetchCompletions] Request 50896819-54b3-4b32-a389-70916fc837a3 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 343.62520000338554ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:39.739
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:40.950
+!MESSAGE [Info]	[fetchCompletions] Request 083ed33a-a3fc-4d78-b43e-5008a1e95dc4 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 257.60790000110865ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:40.997
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:59.848
+!MESSAGE [Info]	[fetchCompletions] Request ccf7e489-6065-4c2e-a973-a87560864c56 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 344.8005000054836ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:25:59.895
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:26:00.342
+!MESSAGE [Info]	[fetchCompletions] Request 6dadc5f1-8838-420e-b5c6-693a5f7c8f7e at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 397.0763000026345ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:26:00.356
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:26:01.683
+!MESSAGE [Info]	[fetchCompletions] Request d66c25f4-b1ff-475c-b1e8-c6c7ecfe3fe0 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 266.5085999965668ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:26:01.776
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:26:02.093
+!MESSAGE [Info]	[fetchCompletions] Request 929f3d8d-9239-47ca-ab42-ccc211143d5e at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 243.66489999741316ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:26:02.094
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:26:29.754
+!MESSAGE [Info]	[fetchCompletions] Request 4128f176-7741-475c-9e8d-387bb62a6919 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 330.49849999696016ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:26:29.797
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:26:30.914
+!MESSAGE [Info]	[fetchCompletions] Request 59645dd9-b467-4697-bcf8-a2cdff6fb77e at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 273.01750000566244ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:26:30.956
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:08.643
+!MESSAGE [Info]	[fetchCompletions] Request 0d98dfcb-28d9-4032-9968-c574ea3c017a at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 346.5038999989629ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:08.751
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:09.033
+!MESSAGE [Info]	[fetchCompletions] Request 1719cc3f-e296-4b4f-8c85-5568a91bd902 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 249.47120000422ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:09.142
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:09.433
+!MESSAGE [Info]	[fetchCompletions] Request da1c611d-8ae9-44f5-82a4-daeb4f273dbd at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 250.38629999756813ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:09.486
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:22.484
+!MESSAGE [Info]	[fetchCompletions] Request f8cca0d4-e558-47b3-846b-b8bf35d4a48a at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 484.0958999991417ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:22.492
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:23.634
+!MESSAGE [Info]	[fetchCompletions] Request f9ef2420-dd23-498c-bcbe-6db1aa815c5c at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 254.6992999985814ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:23.682
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:23.987
+!MESSAGE [Info]	[fetchCompletions] Request 4b494135-ff2a-415d-9e48-05642dcc9e4f at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 269.29410000145435ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:24.033
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:25.680
+!MESSAGE [Info]	[fetchCompletions] Request eb2d80da-7b84-4d62-9765-d7c381092890 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 297.0839000046253ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:25.760
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:26.060
+!MESSAGE [Info]	[fetchCompletions] Request 5fb82eef-79e7-4e98-a3d5-1f14c61afdbc at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 259.8669999986887ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:27:26.105
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:32:08.059
+!MESSAGE [Info]	[fetchCompletions] Request ba3098b7-6365-44a0-a1ef-c354e9145b5e at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 1058.0898000001907ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:32:08.098
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:32:08.437
+!MESSAGE [Info]	[fetchCompletions] Request 617404d8-e61d-423d-8a7e-7d11d3ff14c8 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 265.0038999989629ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-08-31 22:32:08.479
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [null]
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.275
+!MESSAGE [Info] Document is null for editor: PoultryApplication.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.275
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/java/com/poultry/PoultryApplication.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.310
+!MESSAGE [Info] Document is null for editor: CustomerController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.313
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/java/com/poultry/controller/CustomerController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.469
+!MESSAGE [Info] Document is null for editor: EntryController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.470
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/java/com/poultry/controller/EntryController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.497
+!MESSAGE [Info] Document is null for editor: CustomerRepository.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.498
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/java/com/poultry/repository/CustomerRepository.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.524
+!MESSAGE [Info] Document is null for editor: EntryService.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.524
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/java/com/poultry/service/EntryService.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.547
+!MESSAGE [Info] Document is null for editor: CustomerServiceImpl.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.548
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/java/com/poultry/service/impl/CustomerServiceImpl.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.576
+!MESSAGE [Info] Document is null for editor: dashboard.jsp
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.577
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/webapp/WEB-INF/views/dashboard.jsp
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.602
+!MESSAGE [Info] Document is null for editor: customers.jsp
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.604
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/webapp/WEB-INF/views/customers.jsp
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.630
+!MESSAGE [Info] Document is null for editor: TripDetailsRepository.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.631
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/java/com/poultry/repository/TripDetailsRepository.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.653
+!MESSAGE [Info] Document is null for editor: TripDetailsServiceImpl.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.654
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/java/com/poultry/service/impl/TripDetailsServiceImpl.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.732
+!MESSAGE [Info] Document is null for editor: TripDetailsController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.736
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/java/com/poultry/controller/TripDetailsController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.765
+!MESSAGE [Info] Document is null for editor: trip_details.jsp
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.766
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/webapp/WEB-INF/views/trip_details.jsp
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.789
+!MESSAGE [Info] Document is null for editor: entries.jsp
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.789
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/webapp/WEB-INF/views/entries.jsp
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.822
+!MESSAGE [Info] Document is null for editor: EntryServiceImpl.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.823
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/java/com/poultry/service/impl/EntryServiceImpl.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.894
+!MESSAGE [Info] Document is null for editor: login.jsp
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-08-31 22:33:26.896
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/dell/eclipse-workspace/Poultry_Transport_App_V1/poultry_backend/src/main/webapp/WEB-INF/views/login.jsp
+!SESSION 2025-09-01 09:22:04.299 -----------------------------------------------
+eclipse.buildId=4.36.0.20250605-1300
+java.version=21.0.8
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-09-01 09:22:27.930
 !MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
 
-!ENTRY org.eclipse.lemminx.uber-jar 4 0 2025-08-23 12:15:11.909
+!ENTRY org.eclipse.lemminx.uber-jar 4 0 2025-09-01 09:22:29.350
 !MESSAGE bundle org.eclipse.lemminx.uber-jar:0.31.0 (589) Component descriptor entry 'OSGI-INF/*.xml' not found
 
-!ENTRY ch.qos.logback.classic 1 0 2025-08-23 12:15:17.069
+!ENTRY ch.qos.logback.classic 1 0 2025-09-01 09:38:10.046
 !MESSAGE Logback config file: C:\Users\dell\eclipse-workspace\Poultry_Transport_App_V1\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.100.20250418-1315.xml
 
-!ENTRY org.eclipse.egit.ui 2 0 2025-08-23 12:15:27.219
+!ENTRY org.eclipse.jface 2 0 2025-09-01 09:38:21.667
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2025-09-01 09:38:21.667
+!MESSAGE A conflict occurred for ALT+CTRL+SHIFT+T:
+Binding(ALT+CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.terminal.view.ui.command.launchToolbar,Open Local Terminal on Selection,
+		,
+		Category(org.eclipse.terminal.view.ui.commands.category,Terminal Commands,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.terminal.view.ui.command.launchToolbar"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.view.ui.command.launchToolbar,Open Local Terminal on Selection,
+		,
+		Category(org.eclipse.tm.terminal.view.ui.commands.category,Terminal Commands,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.tm.terminal.view.ui.command.launchToolbar"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-09-01 09:38:56.107
+!MESSAGE [Info] Starting language server with binary lsp agent.
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-09-01 09:38:56.494
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\dell'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-08-23 12:15:54.882
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-
-!ENTRY org.eclipse.equinox.security 1 0 2025-08-23 12:20:33.930
-!MESSAGE New keyring password generated. 
-
-!ENTRY org.eclipse.egit.core 4 0 2025-08-23 12:20:37.594
-!MESSAGE An exception occurred during push on URI https://github.com/phani-svg/poultry.git: https://github.com/phani-svg/poultry.git: not authorized
-!STACK 0
-org.eclipse.jgit.errors.TransportException: https://github.com/phani-svg/poultry.git: not authorized
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:694)
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:636)
-	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:540)
-	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:140)
-	at org.eclipse.jgit.transport.Transport.push(Transport.java:1533)
-	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
-	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
-	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-
-!ENTRY org.eclipse.egit.ui 4 0 2025-08-23 12:20:37.596
-!MESSAGE Can't connect to any repository: https://github.com/phani-svg/poultry.git (https://github.com/phani-svg/poultry.git: not authorized)
-
-!ENTRY org.eclipse.egit.core 4 0 2025-08-23 12:27:36.674
-!MESSAGE An exception occurred during push on URI https://github.com/phani-svg/poultry.git: https://github.com/phani-svg/poultry.git: not authorized
-!STACK 0
-org.eclipse.jgit.errors.TransportException: https://github.com/phani-svg/poultry.git: not authorized
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:694)
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:636)
-	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:540)
-	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:140)
-	at org.eclipse.jgit.transport.Transport.push(Transport.java:1533)
-	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
-	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
-	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-
-!ENTRY org.eclipse.egit.ui 4 0 2025-08-23 12:27:36.676
-!MESSAGE Can't connect to any repository: https://github.com/phani-svg/poultry.git (https://github.com/phani-svg/poultry.git: not authorized)
-
-!ENTRY org.eclipse.egit.core 4 0 2025-08-23 12:28:19.647
-!MESSAGE An exception occurred during push on URI https://github.com/phani-svg/poultry.git: https://github.com/phani-svg/poultry.git: not authorized
-!STACK 0
-org.eclipse.jgit.errors.TransportException: https://github.com/phani-svg/poultry.git: not authorized
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:694)
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:636)
-	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:540)
-	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:140)
-	at org.eclipse.jgit.transport.Transport.push(Transport.java:1533)
-	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
-	at org.eclipse.egit.ui.internal.push.ConfirmationPage$2.run(ConfirmationPage.java:204)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
-
-!ENTRY org.eclipse.egit.core 4 0 2025-08-23 12:28:31.726
-!MESSAGE An exception occurred during push on URI https://github.com/phani-svg/poultry.git: Nothing to push.
-!STACK 0
-org.eclipse.jgit.errors.TransportException: Nothing to push.
-	at org.eclipse.jgit.transport.Transport.push(Transport.java:1521)
-	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
-	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
-	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-
-!ENTRY org.eclipse.egit.ui 4 0 2025-08-23 12:28:31.727
-!MESSAGE Can't connect to any repository: https://github.com/phani-svg/poultry.git (Nothing to push.)
-
-!ENTRY org.eclipse.egit.core 4 0 2025-08-23 12:33:20.024
-!MESSAGE An exception occurred during push on URI https://github.com/phani-svg/poultry.git: https://github.com/phani-svg/poultry.git: not authorized
-!STACK 0
-org.eclipse.jgit.errors.TransportException: https://github.com/phani-svg/poultry.git: not authorized
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:694)
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:636)
-	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:540)
-	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:140)
-	at org.eclipse.jgit.transport.Transport.push(Transport.java:1533)
-	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
-	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
-	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-
-!ENTRY org.eclipse.egit.ui 4 0 2025-08-23 12:33:20.024
-!MESSAGE Can't connect to any repository: https://github.com/phani-svg/poultry.git (https://github.com/phani-svg/poultry.git: not authorized)
-
-!ENTRY org.eclipse.egit.core 4 0 2025-08-23 12:34:29.876
-!MESSAGE An exception occurred during push on URI https://github.com/phani-svg/poultry.git: https://github.com/phani-svg/poultry.git: not authorized
-!STACK 0
-org.eclipse.jgit.errors.TransportException: https://github.com/phani-svg/poultry.git: not authorized
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:694)
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:636)
-	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:540)
-	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:140)
-	at org.eclipse.jgit.transport.Transport.push(Transport.java:1533)
-	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
-	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
-	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-
-!ENTRY org.eclipse.egit.ui 4 0 2025-08-23 12:34:29.878
-!MESSAGE Can't connect to any repository: https://github.com/phani-svg/poultry.git (https://github.com/phani-svg/poultry.git: not authorized)
-
-!ENTRY org.eclipse.m2e.logback.appender 2 0 2025-08-23 12:35:03.295
-!MESSAGE The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-
-!ENTRY org.eclipse.egit.core 4 0 2025-08-23 12:35:42.819
-!MESSAGE An exception occurred during push on URI https://github.com/phani-svg/poultry.git: https://github.com/phani-svg/poultry.git: not authorized
-!STACK 0
-org.eclipse.jgit.errors.TransportException: https://github.com/phani-svg/poultry.git: not authorized
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:694)
-	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:636)
-	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:540)
-	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:140)
-	at org.eclipse.jgit.transport.Transport.push(Transport.java:1533)
-	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
-	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
-	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-
-!ENTRY org.eclipse.egit.ui 4 0 2025-08-23 12:35:42.821
-!MESSAGE Can't connect to any repository: https://github.com/phani-svg/poultry.git (https://github.com/phani-svg/poultry.git: not authorized)

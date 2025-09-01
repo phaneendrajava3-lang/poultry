@@ -1,0 +1,309 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="true" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Login • Chicks Transport</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <style>
+    :root{
+      --bg1:#a8e6ff; --bg2:#ffd7a8; --bg3:#d6f9ff; --bg4:#fff2cc;
+      --card: rgba(255,255,255,0.86);
+      --text:#1f2937; --muted:#6b7280; --focus:#4f86ff;
+      --brand1:#ff7b54; --brand2:#ffa260; --ok:#18b38a; --danger:#e11d48;
+      --chickGlow: 0 10px 20px rgba(0,0,0,.18);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;color:var(--text)}
+
+    /* Background mesh + subtle grid */
+    body{
+      display:grid;place-items:center;overflow:hidden;
+      background:
+        radial-gradient(1200px 800px at 10% -20%, var(--bg3), transparent 60%),
+        radial-gradient(900px 600px  at 110% 120%, var(--bg4), transparent 60%),
+        linear-gradient(120deg, var(--bg1), #c8f7ff 40%, #fff7e6 60%, var(--bg2));
+      background-size: 200% 200%;
+      animation: mesh 18s ease-in-out infinite alternate;
+    }
+    @keyframes mesh{ from{background-position: 0% 0%} to{background-position: 100% 100%} }
+
+    .grid{
+      position:fixed; inset:0; pointer-events:none; opacity:.10;
+      background-image:
+        linear-gradient(transparent 31px, rgba(0,0,0,.05) 32px, transparent 33px),
+        linear-gradient(90deg, transparent 31px, rgba(0,0,0,.05) 32px, transparent 33px);
+      background-size: 32px 32px;
+      animation: slideGrid 30s linear infinite;
+    }
+    @keyframes slideGrid{ from{transform:translate3d(0,0,0)} to{transform:translate3d(-32px,-32px,0)} }
+
+    /* Flock background */
+    .flock{ position:fixed; inset:0; pointer-events:none; z-index:0; }
+    .bg-chick{
+      position:absolute; width:120px; height:100px; opacity:.26; filter: drop-shadow(var(--chickGlow));
+      transform-origin:center bottom;
+    }
+    @keyframes peck { 0%,8%,100%{ transform: translateY(0) rotate(0deg) } 2%{ transform: translateY(1px) rotate(-6deg) } 4%{ transform: translateY(0) rotate(0deg) } 6%{ transform: translateY(1px) rotate(-4deg) } }
+    @keyframes hop  { 0%,100%{ transform: translateY(0) } 40%{ transform: translateY(-8px) } 60%{ transform: translateY(-3px) } }
+    @keyframes stroll{ 0%,100%{ transform: translateX(0) } 50%{ transform: translateX(16px) } }
+    .bg-blink { transform-origin:center; animation: blink 6s ease-in-out infinite; }
+    @keyframes blink{ 0%,96%,100%{transform:scaleY(1)} 97%,99%{transform:scaleY(.2)} }
+
+    /* Card */
+    .card{
+      position:relative; z-index:2;
+      width:min(92vw, 420px); padding:2.2rem 2rem; border-radius:20px;
+      background:var(--card); backdrop-filter: blur(8px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.16);
+      animation: rise .7s cubic-bezier(.16,.84,.44,1);
+    }
+    @keyframes rise{ from{opacity:0; transform: translateY(12px) scale(.98)} to{opacity:1; transform: translateY(0) scale(1)} }
+
+    .brand{ display:flex; align-items:center; gap:.9rem; margin-bottom:.35rem; }
+    .badge{
+      width:52px;height:52px;border-radius:14px; position:relative; flex:0 0 52px;
+      background: radial-gradient(135% 135% at 30% 25%, #fff 0 45%, #ffe066 46% 100%);
+      box-shadow: 0 10px 26px rgba(255,224,102,.55), inset 0 -4px 0 #ffd34d; overflow:hidden;
+    }
+    .badge svg{ position:absolute; inset:10% 12% 12% 10% }
+    .sheen{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent);
+      transform: translateX(-120%); animation: sheen 4.2s ease-in-out infinite; }
+    @keyframes sheen{ 0%{transform:translateX(-120%)} 40%{transform:translateX(120%)} 100%{transform:translateX(120%)} }
+
+    .title{ font-size:1.35rem; font-weight:700; letter-spacing:.2px; margin:0 }
+    .sub{ color:var(--muted); margin:.15rem 0 1.2rem; font-size:.95rem }
+
+    .error{ display:none; margin:.6rem 0 1rem; padding:.65rem .8rem; border-radius:12px;
+      background:#ffe6eb; color:var(--danger); border:1px solid #ff9db6; box-shadow: 0 6px 18px rgba(225,29,72,.10); }
+    .error.show{ display:block; animation: shake .45s cubic-bezier(.36,.07,.19,.97) both }
+    @keyframes shake{ 10%,90%{transform:translateX(-1px)} 20%,80%{transform:translateX(2px)} 30%,50%,70%{transform:translateX(-4px)} 40%,60%{transform:translateX(4px)} }
+
+    .field{ position:relative; margin:1rem 0 }
+    .input{
+      width:100%; padding:1.05rem 3rem 1.05rem 3rem; border:none; outline:none; border-radius:14px;
+      background:#f3f6fb; font-size:1rem; color:#111; transition: box-shadow .22s, background .22s, transform .06s;
+    }
+    .input:focus{ background:#fff; box-shadow:0 0 0 3px var(--focus) }
+    .label{ position:absolute; left:3rem; top:50%; transform:translateY(-50%); color:#8a94a6; pointer-events:none; transition:.16s; }
+    .input:focus + .label, .input:not(:placeholder-shown) + .label{ top:.25rem; font-size:.78rem; color:var(--focus) }
+    .icon{ position:absolute; left:1rem; top:50%; transform:translateY(-50%); font-size:1.15rem; opacity:.9; }
+    .state{ position:absolute; right:.9rem; top:50%; transform:translateY(-50%); font-size:1rem; opacity:.0; transition:.2s; }
+    .input:valid ~ .state.ok{ color:var(--ok); opacity:1 }
+    .input:invalid:focus ~ .state.err{ color:var(--danger); opacity:1 }
+
+    .btn{
+      width:100%; border:none; border-radius:14px; padding:0.95rem 1rem; margin-top:.5rem;
+      color:#fff; font-weight:700; letter-spacing:.3px; cursor:pointer;
+      background:linear-gradient(90deg,var(--brand1),var(--brand2));
+      box-shadow: 0 14px 28px rgba(255,145,77,.35);
+      transition: transform .08s, box-shadow .18s, filter .2s;
+    }
+    .btn:hover{ filter:brightness(1.03); box-shadow:0 16px 32px rgba(255,145,77,.45); transform:translateY(-1px) }
+    .btn:active{ transform:translateY(1px) scale(.995) }
+
+    .btn.loading{ position:relative; color:transparent; pointer-events:none; }
+    .btn.loading::after{
+      content:""; position:absolute; inset:0; margin:auto; width:22px; height:22px; border-radius:50%;
+      border:3px solid rgba(255,255,255,.55); border-top-color:#fff; animation: spin .7s linear infinite;
+    }
+    @keyframes spin{ to{ transform:rotate(360deg) } }
+
+    .row{ display:flex; justify-content:space-between; align-items:center; gap:.6rem; margin:.5rem 0 .25rem; font-size:.9rem; color:var(--muted) }
+    .row a{ color:var(--brand1); text-decoration:none }
+    .row a:hover{ text-decoration:underline }
+    .foot{ text-align:center; color:#7b8794; font-size:.85rem; margin-top:1rem }
+
+    @media (prefers-reduced-motion: reduce){
+      .grid, body { animation:none }
+      .bg-chick { animation:none !important }
+      .btn.loading::after{ animation:none }
+    }
+    @media (max-width:480px){
+      .card{ width:min(94vw, 430px); padding:1.6rem 1.2rem }
+      .row{ flex-direction:column; align-items:flex-start }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+
+  <!-- Flock background (no EL, no ${}) -->
+  <div class="flock" id="flock">
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <symbol id="chickSymbol" viewBox="0 0 300 260">
+          <defs>
+            <radialGradient id="gBody" cx="40%" cy="35%" r="70%">
+              <stop offset="0%" stop-color="#fff8b8"/>
+              <stop offset="55%" stop-color="#ffe067"/>
+              <stop offset="100%" stop-color="#ffc83d"/>
+            </radialGradient>
+            <radialGradient id="gWing" cx="55%" cy="50%" r="60%">
+              <stop offset="0%" stop-color="#ffd94d"/>
+              <stop offset="100%" stop-color="#ffbd3b"/>
+            </radialGradient>
+            <linearGradient id="gBeak" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#ff9a3d"/>
+              <stop offset="100%" stop-color="#ff7a2d"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="150" cy="142" rx="95" ry="78" fill="url(#gBody)"/>
+          <ellipse cx="120" cy="112" rx="35" ry="25" fill="rgba(255,255,255,.55)"/>
+          <g transform="translate(150,142)">
+            <ellipse cx="0" cy="0" rx="45" ry="32" fill="url(#gWing)"/>
+            <path d="M-40,-5 C-10,-18 10,-15 40,-5 C10,0 -10,8 -40,-5 Z" fill="rgba(255,180,50,0.35)"/>
+          </g>
+          <g>
+            <ellipse cx="210" cy="105" rx="42" ry="38" fill="url(#gBody)"/>
+            <g class="bg-blink">
+              <circle cx="222" cy="102" r="5.5" fill="#1f2937"/>
+              <circle cx="222" cy="99" r="2.1" fill="#fff" opacity=".9"/>
+            </g>
+            <path d="M236,112 L258,104 L236,96 Z" fill="url(#gBeak)"/>
+            <path d="M236,112 L252,108 L236,106 Z" fill="#e66c22" opacity=".5"/>
+          </g>
+          <g>
+            <rect x="165" y="200" width="6" height="28" rx="3" fill="#e27627"/>
+            <rect x="188" y="200" width="6" height="28" rx="3" fill="#e27627"/>
+            <rect x="158" y="226" width="16" height="4" rx="2" fill="#e27627"/>
+            <rect x="182" y="226" width="16" height="4" rx="2" fill="#e27627"/>
+          </g>
+        </symbol>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Card -->
+  <main class="card">
+    <div class="brand">
+      <div class="badge">
+        <svg viewBox="0 0 64 64" width="52" height="52" aria-hidden="true">
+          <circle cx="34" cy="28" r="18" fill="#ffe066"/>
+          <circle cx="40" cy="24" r="2.6" fill="#1f2937"/>
+          <path d="M45 29 L55 26 L45 23 Z" fill="#ff8a3a"/>
+        </svg>
+        <div class="sheen"></div>
+      </div>
+      <div>
+        <h1 class="title">Chicks Transport</h1>
+        <p class="sub">Secure sign-in • Professional UI with lively background</p>
+      </div>
+    </div>
+
+    <div class="error<% if (request.getParameter("error") != null) { %> show<% } %>">
+      Invalid username or password.
+    </div>
+
+    <form action="login" method="post" autocomplete="off" id="loginForm">
+      <div class="field">
+        <span class="icon">👤</span>
+        <input class="input" id="username" name="username" type="text" required placeholder=" " minlength="2"/>
+        <span class="label">Username</span>
+        <span class="state ok">✔</span>
+        <span class="state err">!</span>
+      </div>
+
+      <div class="field">
+        <span class="icon">🔒</span>
+        <input class="input" id="password" name="password" type="password" required placeholder=" " minlength="3"/>
+        <span class="label">Password</span>
+        <span class="state ok">✔</span>
+        <span class="state err">!</span>
+      </div>
+
+      <div class="row">
+        <label><input type="checkbox" id="remember"/> Remember me</label>
+        <a href="#" onclick="alert('Please contact your admin to reset your password.');return false;">Forgot password?</a>
+      </div>
+
+      <button class="btn" id="submitBtn" type="submit">Sign In</button>
+    </form>
+
+    <div class="foot">© <span id="year"></span> Chicks Transport App</div>
+  </main>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Remember me (localStorage)
+    (function () {
+      var user = document.getElementById('username');
+      var remember = document.getElementById('remember');
+      if (localStorage.getItem('ct_remember') === '1') {
+        remember.checked = true;
+        user.value = localStorage.getItem('ct_username') || '';
+      }
+      document.getElementById('loginForm').addEventListener('submit', function () {
+        if (remember.checked) {
+          localStorage.setItem('ct_remember', '1');
+          localStorage.setItem('ct_username', user.value);
+        } else {
+          localStorage.removeItem('ct_remember');
+          localStorage.removeItem('ct_username');
+        }
+        document.getElementById('submitBtn').classList.add('loading');
+      });
+    })();
+
+    // Flock generation (no template literals, no ${})
+    (function createFlock(){
+      var N = 7;
+      var container = document.getElementById('flock');
+
+      for (var i = 0; i < N; i++) {
+        var wrap = document.createElement('div');
+        wrap.className = 'bg-chick';
+
+        var scale = 0.7 + Math.random() * 0.6;
+        wrap.style.transform = 'scale(' + scale + ')';
+
+        var left = Math.random() * 80 + 5;
+        var top  = Math.random() * 70 + 10;
+        wrap.style.left = left + 'vw';
+        wrap.style.top  = top + 'vh';
+
+        var types = ['peck', 'hop', 'stroll'];
+        var type = types[Math.floor(Math.random() * types.length)];
+
+        var dur   = ((type === 'stroll' ? (7 + Math.random()*6) : (4 + Math.random()*3))).toFixed(2) + 's';
+        var delay = (-Math.random() * 5).toFixed(2) + 's';
+
+        var anim = '';
+        if (type === 'peck') {
+          anim = 'peck ' + dur + ' ease-in-out ' + delay + ' infinite';
+        } else if (type === 'hop') {
+          anim = 'hop ' + dur + ' ease-in-out ' + delay + ' infinite';
+        } else {
+          anim = 'stroll ' + dur + ' ease-in-out ' + delay + ' infinite';
+          if (Math.random() > 0.5) {
+            anim += ', peck ' + (3 + Math.random() * 2).toFixed(2) + 's ease-in-out ' + delay + ' infinite';
+          }
+        }
+        wrap.style.animation = anim;
+
+        wrap.innerHTML =
+          '<svg viewBox="0 0 300 260" width="120" height="100" aria-hidden="true">' +
+            '<use href="#chickSymbol"></use>' +
+          '</svg>';
+
+        container.appendChild(wrap);
+      }
+    })();
+
+    // Card nudge on error
+    window.addEventListener('load', function () {
+      var hasError = new URLSearchParams(window.location.search).has('error');
+      if (hasError) {
+        var card = document.querySelector('.card');
+        card.style.animation = 'shake .45s cubic-bezier(.36,.07,.19,.97)';
+        setTimeout(function(){ card.style.animation = ''; }, 500);
+        var err = document.querySelector('.error');
+        if (err) err.classList.add('show');
+      }
+    });
+  </script>
+</body>
+</html>

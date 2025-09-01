@@ -1,0 +1,134 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Poultry Transport App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .login-container {
+            background: #fff;
+            padding: 2.5rem 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 320px;
+            animation: fadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .login-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #3a3a3a;
+            letter-spacing: 1px;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 0.9rem 1rem 0.9rem 2.5rem;
+            border: none;
+            border-radius: 2rem;
+            background: #f0f4f8;
+            font-size: 1rem;
+            transition: box-shadow 0.3s;
+            outline: none;
+        }
+        .input-group input:focus {
+            box-shadow: 0 0 0 2px #66a6ff;
+        }
+        .input-group label {
+            position: absolute;
+            left: 2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            font-size: 1rem;
+            pointer-events: none;
+            transition: 0.2s;
+        }
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: 0.2rem;
+            left: 2.5rem;
+            font-size: 0.8rem;
+            color: #66a6ff;
+        }
+        .input-group .icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #66a6ff;
+            font-size: 1.2rem;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 2rem;
+            background: linear-gradient(90deg, #66a6ff 0%, #89f7fe 100%);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 0.5rem;
+        }
+        .login-btn:hover {
+            background: linear-gradient(90deg, #89f7fe 0%, #66a6ff 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .login-footer {
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: #888;
+        }
+        @media (max-width: 400px) {
+            .login-container { min-width: 90vw; padding: 1.5rem 0.5rem; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+<div class="login-container">
+    <div class="login-title">Poultry Transport Login</div>
+    <form action="login" method="post" autocomplete="off">
+        <div class="input-group">
+            <span class="icon"><i class="fa fa-user"></i></span>
+            <input type="text" id="username" name="username" required placeholder=" " />
+            <label for="username">Username</label>
+        </div>
+        <div class="input-group">
+            <span class="icon"><i class="fa fa-lock"></i></span>
+            <input type="password" id="password" name="password" required placeholder=" " />
+            <label for="password">Password</label>
+        </div>
+        <button class="login-btn" type="submit">Login</button>
+    </form>
+    <div class="login-footer">&copy; 2025 Poultry Transport App</div>
+</div>
+<script>
+    // Optional: Add shake animation on failed login (if you want to handle errors)
+    // Example: document.querySelector('.login-container').classList.add('shake');
+</script>
+</body>
+</html>

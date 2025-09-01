@@ -1,0 +1,44 @@
+package com.poultry.controller;
+
+import com.poultry.model.Customer;
+import com.poultry.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+
+@Controller
+@RequestMapping("/customers")
+public class CustomerController {
+
+    @Autowired private CustomerService customerService;
+
+    @GetMapping
+    public String list(Model model, HttpSession session) {
+        if (session.getAttribute("loggedInUser") == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("customers", customerService.findAll());
+        return "customers";
+    }
+
+    @PostMapping("/save")
+    public String saveOrUpdate(@ModelAttribute Customer c, HttpSession session) {
+        if (session.getAttribute("loggedInUser") == null) {
+            return "redirect:/login";
+        }
+        customerService.save(c);
+        return "redirect:/customers";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id, HttpSession session) {
+        if (session.getAttribute("loggedInUser") == null) {
+            return "redirect:/login";
+        }
+        customerService.delete(id);
+        return "redirect:/customers";
+    }
+}

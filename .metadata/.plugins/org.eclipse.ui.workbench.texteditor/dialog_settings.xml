@@ -3,15 +3,37 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
+		<item key="selection" value=""/>
+		<item key="wrap" value="false"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="back"/>
-			<item value="toggle"/>
-			<item value="btn"/>
-			<item value="&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css&quot;&gt;"/>
-			<item value="1.11.1"/>
-			<item value="stylesheet"/>
-			<item value="save"/>
-			<item value="org.apache.tomcat.embed"/>
+			<item value="15"/>
+			<item value="var dur"/>
+			<item value="var ty"/>
+			<item value="@key"/>
+			<item value="var n"/>
+			<item value="custom-table-box"/>
+			<item value="table table-bordered table-hover bg-white shadow-sm"/>
+			<item value="suggest"/>
+			<item value="Dead Chicks &amp; Trips"/>
+			<item value="filter"/>
+			<item value="sugges"/>
+			<item value="/search"/>
+			<item value="customerSuggestions"/>
+			<item value="customerIdInput"/>
+			<item value="list-group position-absolute"/>
 		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="915"/>
+		<item key="DIALOG_Y_ORIGIN" value="262"/>
+		<item key="DIALOG_WIDTH" value="322"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 </section>

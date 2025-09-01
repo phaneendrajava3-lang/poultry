@@ -1,0 +1,329 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Login • Poultry Transport</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ====== BASE STYLES ====== -->
+  <style>
+    :root{
+      --bg1:#a8e6ff;
+      --bg2:#ffd7a8;
+      --card-bg: rgba(255,255,255,0.9);
+      --accent: #ff7b54;
+      --accent-2:#ffa260;
+      --focus:#4f86ff;
+      --ok:#18b38a;
+      --text:#2a2a2a;
+    }
+
+    * { box-sizing: border-box; }
+    html,body{ height:100%; margin:0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:var(--text); }
+
+    /* Background gradient + animated waves */
+    body{
+      --gsize: 400%;
+      background: linear-gradient(120deg,var(--bg1),#c8f7ff 40%,#fff7e6 60%,var(--bg2));
+      background-size: var(--gsize) var(--gsize);
+      animation: bgShift 16s ease-in-out infinite alternate;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+    }
+    @keyframes bgShift{
+      0%{ background-position: 0% 0%; }
+      100%{ background-position: 100% 100%; }
+    }
+
+    /* Soft animated waves */
+    .wave{
+      position: fixed; left:0; right:0; bottom:-8vmin; height:24vmin; pointer-events:none; opacity:.25; filter: blur(2px);
+      background:
+        radial-gradient(100% 60% at 0% 100%, #fff 0 35%, transparent 36%) 0 0/25% 100% repeat-x,
+        radial-gradient(100% 60% at 50% 100%, #fff 0 35%, transparent 36%) 0 0/25% 100% repeat-x,
+        radial-gradient(100% 60% at 100% 100%, #fff 0 35%, transparent 36%) 0 0/25% 100% repeat-x;
+      animation: waveMove 12s linear infinite;
+    }
+    .wave:nth-child(2){ bottom:-4vmin; opacity:.18; animation-duration: 18s; }
+    .wave:nth-child(3){ bottom:-1vmin; opacity:.10; animation-duration: 26s; }
+    @keyframes waveMove{
+      from{ background-position: 0 0, 12.5% 0, 25% 0; }
+      to  { background-position: 25% 0, 37.5% 0, 50% 0; }
+    }
+
+    /* Floating eggs (cute background particles) */
+    .egg{
+      position: fixed; width: 18px; height: 24px; border-radius: 50% 50% 45% 45%/55% 55% 45% 45%;
+      background:#fff; box-shadow: inset 0 -2px 0 0 #ffd8b4, 0 2px 8px rgba(0,0,0,.08);
+      opacity:.85; transform: translateY(100vh);
+      animation: floatEgg linear infinite;
+    }
+    .egg::after{ /* highlight */
+      content:""; position:absolute; left:4px; top:5px; width:6px; height:9px; border-radius:50%;
+      background: radial-gradient(ellipse at 30% 30%, #fff 0 60%, transparent 61%);
+      opacity:.7;
+    }
+    @keyframes floatEgg{
+      from{ transform: translateY(110vh) translateX(0) rotate(0deg); }
+      to  { transform: translateY(-20vh)  translateX(-30px) rotate(15deg); }
+    }
+
+    /* Chick sprite (CSS-only) walking on the bottom */
+    .chick{
+      position: fixed; bottom: 8vmin; left:-15vmin; width: 14vmin; height: 12vmin; pointer-events:none;
+      animation: chickWalk 22s linear infinite;
+    }
+    @keyframes chickWalk{
+      0%  { left:-15vmin; transform: scale(1) }
+      48% { transform: scale(1) }
+      50% { transform: scaleX(-1) } /* turn back */
+      100%{ left: calc(100% + 15vmin); transform: scaleX(-1) }
+    }
+    .chick .body{
+      position:absolute; left:2vmin; top:2vmin; width:10vmin; height:8vmin; background:#ffe066; border-radius:50%;
+      box-shadow: inset -0.6vmin -0.6vmin 0 0 #ffc54d;
+    }
+    .chick .wing{
+      position:absolute; left:5.5vmin; top:4.6vmin; width:4.2vmin; height:3.2vmin; background:#ffd34d; border-radius:50%;
+      transform-origin: top left;
+      animation: flap 1s ease-in-out infinite;
+      box-shadow: inset -0.4vmin -0.4vmin 0 0 #ffc54d;
+    }
+    @keyframes flap{ 0%,100%{ transform: rotate(0deg) } 50%{ transform: rotate(-16deg) } }
+    .chick .eye{
+      position:absolute; left:8.2vmin; top:4.2vmin; width:0.9vmin; height:0.9vmin; background:#333; border-radius:50%;
+      box-shadow: 0 0 0 .25vmin #fff;
+    }
+    .chick .beak{
+      position:absolute; left:10.2vmin; top:5vmin; width:0; height:0;
+      border-left:1.2vmin solid #ff914d; border-top:.8vmin solid transparent; border-bottom:.8vmin solid transparent;
+    }
+    .chick .leg{
+      position:absolute; width:.4vmin; height:2.2vmin; background:#ff914d; bottom:-.2vmin; left:5.2vmin;
+      transform-origin: top center; animation: step .45s ease-in-out infinite;
+    }
+    .chick .leg.right{ left:7.2vmin; animation-delay:.22s; }
+    .chick .toe{ position:absolute; width:1.4vmin; height:.35vmin; background:#ff914d; bottom:-.2vmin; left:-.4vmin; }
+    .chick .toe:nth-child(2){ transform:rotate(20deg); left:-.2vmin; }
+    .chick .toe:nth-child(3){ transform:rotate(-20deg); left:-.6vmin; }
+    @keyframes step{
+      0%,100%{ transform: rotate(8deg) }
+      50%    { transform: rotate(-12deg) }
+    }
+
+    /* Glass card */
+    .login-card{
+      position:relative;
+      width:min(92vw, 380px);
+      padding:2.2rem 2rem;
+      border-radius:1.5rem;
+      background: var(--card-bg);
+      box-shadow: 0 10px 40px rgba(0,0,0,.15);
+      backdrop-filter: blur(6px);
+      animation: popIn .9s cubic-bezier(.16,.84,.44,1);
+    }
+    @keyframes popIn{
+      from{ opacity:0; transform: translateY(18px) scale(.98) }
+      to  { opacity:1; transform: translateY(0)   scale(1) }
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:.75rem; margin-bottom:1rem;
+    }
+    .brand-logo{
+      width:44px; height:44px; border-radius:12px; background: radial-gradient(circle at 30% 30%, #fff 0 45%, #ffe066 46% 100%);
+      position:relative; box-shadow: 0 6px 18px rgba(255,224,102,.6);
+    }
+    .brand-logo::after{ /* tiny comb */
+      content:""; position:absolute; width:16px; height:12px; right:-6px; top:16px; border-radius: 0 12px 12px 0;
+      background: linear-gradient(90deg,#ffb703,#ff914d);
+    }
+    .brand h1{ font-size:1.35rem; margin:0; letter-spacing:.2px; }
+
+    .subtitle{ margin:0 0 1.25rem; color:#666; font-size:.95rem; }
+
+    .input{
+      position:relative; margin:.9rem 0;
+    }
+    .input input{
+      width:100%; border:none; outline:none; padding:1rem 3rem 1rem 3rem; border-radius:1rem;
+      background:#f3f6fb; font-size:1rem; color:#222;
+      transition: box-shadow .25s, background .25s, transform .06s;
+    }
+    .input input:focus{ box-shadow: 0 0 0 3px var(--focus); background:#fff; }
+    .input label{
+      position:absolute; left:3rem; top:50%; transform: translateY(-50%); color:#9aa6b2; pointer-events:none; transition: .18s;
+    }
+    .input input:focus + label,
+    .input input:not(:placeholder-shown) + label{
+      top:.2rem; font-size:.78rem; color: var(--focus);
+    }
+    .input .icon{
+      position:absolute; left:.95rem; top:50%; transform:translateY(-50%); font-size:1.15rem; opacity:.9;
+    }
+    .toggle-pass{
+      position:absolute; right:.95rem; top:50%; transform:translateY(-50%); font-size:.95rem; cursor:pointer; user-select:none;
+    }
+
+    .btn{
+      width:100%; border:none; padding:0.95rem 1rem; border-radius:1rem; margin-top:.4rem;
+      font-weight:700; letter-spacing:.3px; color:#fff; cursor:pointer;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      box-shadow: 0 10px 24px rgba(255,145,77,.35);
+      transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .btn:hover{ filter: brightness(1.03); box-shadow: 0 12px 28px rgba(255,145,77,.45); transform: translateY(-1px) }
+    .btn:active{ transform: translateY(1px) scale(.995) }
+
+    .row{
+      display:flex; justify-content:space-between; align-items:center; gap:.5rem; margin:.4rem 0 .2rem;
+      font-size:.9rem; color:#666;
+    }
+    .row a{ color:var(--accent); text-decoration:none; }
+    .row a:hover{ text-decoration:underline; }
+
+    .footer{
+      margin-top:1rem; text-align:center; font-size:.85rem; color:#7b8794;
+    }
+
+    .error{
+      color:#e11d48; background:#ffe6eb; border:1px solid #ff8aa8;
+      padding:.6rem .8rem; border-radius: .8rem; text-align:center; margin-bottom:.8rem; box-shadow: 0 4px 16px rgba(225,29,72,.08);
+    }
+
+    /* Shake when error=… */
+    @keyframes shake{
+      10%,90%{ transform:translateX(-1px) }
+      20%,80%{ transform:translateX(2px) }
+      30%,50%,70%{ transform:translateX(-4px) }
+      40%,60%{ transform:translateX(4px) }
+    }
+    .shake{ animation: shake .45s cubic-bezier(.36,.07,.19,.97) both; }
+
+    /* Small */
+    @media (max-width:420px){
+      .login-card{ width: min(94vw, 380px); padding:1.6rem 1.2rem }
+      .row{ flex-direction:column; gap:.6rem; align-items:flex-start }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background waves -->
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+
+  <!-- Floating eggs (randomized by JS for variety) -->
+  <!-- placeholders; JS will clone & randomize -->
+  <div class="egg" style="left:8vw; animation-duration:12s;"></div>
+
+  <!-- Chick sprite -->
+  <div class="chick" aria-hidden="true">
+    <div class="body"></div>
+    <div class="wing"></div>
+    <div class="eye"></div>
+    <div class="beak"></div>
+    <div class="leg"><div class="toe"></div><div class="toe"></div><div class="toe"></div></div>
+    <div class="leg right"><div class="toe"></div><div class="toe"></div><div class="toe"></div></div>
+  </div>
+
+  <!-- ====== LOGIN CARD ====== -->
+  <main class="login-card<%= request.getParameter("error") != null ? " shake" : "" %>">
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true"></div>
+      <h1>Poultry Transport</h1>
+    </div>
+    <p class="subtitle">Welcome back! Please sign in to continue.</p>
+
+    <% if (request.getParameter("error") != null) { %>
+      <div class="error">Invalid username or password.</div>
+    <% } %>
+
+    <form action="login" method="post" autocomplete="off" id="loginForm">
+      <div class="input">
+        <span class="icon">👤</span>
+        <input id="username" name="username" type="text" required placeholder=" " />
+        <label for="username">Username</label>
+      </div>
+      <div class="input">
+        <span class="icon">🔒</span>
+        <input id="password" name="password" type="password" required placeholder=" " minlength="3"/>
+        <label for="password">Password</label>
+        <span class="toggle-pass" id="togglePass" title="Show/Hide Password">👁️</span>
+      </div>
+
+      <div class="row">
+        <label><input type="checkbox" id="remember" /> Remember me</label>
+        <a href="#" onclick="alert('Please contact your admin to reset your password.'); return false;">Forgot password?</a>
+      </div>
+
+      <button class="btn" type="submit">Sign In</button>
+    </form>
+
+    <div class="footer">© <span id="year"></span> Poultry Transport App</div>
+  </main>
+
+  <!-- ====== INTERACTION JS ====== -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Show / hide password
+    (function(){
+      const pass = document.getElementById('password');
+      const tog  = document.getElementById('togglePass');
+      tog.addEventListener('click', () => {
+        const isPwd = pass.type === 'password';
+        pass.type = isPwd ? 'text' : 'password';
+        tog.textContent = isPwd ? '🙈' : '👁️';
+      });
+    })();
+
+    // Remember me (localStorage)
+    (function(){
+      const user = document.getElementById('username');
+      const remember = document.getElementById('remember');
+      if(localStorage.getItem('pt_remember') === '1'){
+        remember.checked = true;
+        user.value = localStorage.getItem('pt_username') || '';
+      }
+      document.getElementById('loginForm').addEventListener('submit', () => {
+        if(remember.checked){
+          localStorage.setItem('pt_remember','1');
+          localStorage.setItem('pt_username', user.value);
+        }else{
+          localStorage.removeItem('pt_remember');
+          localStorage.removeItem('pt_username');
+        }
+      });
+    })();
+
+    // Add/remove shake on error via URL param
+    window.addEventListener('load', () => {
+      const hasError = new URLSearchParams(location.search).has('error');
+      if(hasError){
+        const card = document.querySelector('.login-card');
+        card.classList.add('shake');
+        setTimeout(() => card.classList.remove('shake'), 600);
+      }
+    });
+
+    // Generate multiple floating eggs at random positions/speeds
+    (function spawnEggs(n=12){
+      const base = document.querySelector('.egg');
+      for(let i=0;i<n;i++){
+        const e = base.cloneNode(true);
+        e.style.left = (Math.random()*100) + 'vw';
+        e.style.animationDuration = (12 + Math.random()*14) + 's';
+        e.style.animationDelay = (-Math.random()*20) + 's';
+        e.style.transform = `translateY(${80+Math.random()*40}vh)`;
+        e.style.opacity = 0.6 + Math.random()*0.4;
+        document.body.appendChild(e);
+      }
+    })();
+  </script>
+</body>
+</html>

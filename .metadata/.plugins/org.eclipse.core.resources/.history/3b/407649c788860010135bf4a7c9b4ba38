@@ -1,0 +1,245 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Login • Chicks Transport</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <style>
+    :root{
+      --bg1:#a8e6ff; --bg2:#ffd7a8; --card-bg: rgba(255,255,255,0.9);
+      --accent:#ff7b54; --accent-2:#ffa260; --focus:#4f86ff; --text:#2a2a2a;
+      --chick:#ffe066; --beak:#ff914d;
+    }
+    *{ box-sizing:border-box }
+    html,body{ height:100%; margin:0; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; color:var(--text); }
+
+    /* Animated background */
+    body{
+      --gsize: 400%;
+      background: linear-gradient(120deg,var(--bg1),#c8f7ff 40%,#fff7e6 60%,var(--bg2));
+      background-size: var(--gsize) var(--gsize);
+      animation: bgShift 16s ease-in-out infinite alternate;
+      overflow:hidden; display:grid; place-items:center;
+    }
+    @keyframes bgShift{ 0%{background-position:0 0} 100%{background-position:100% 100%} }
+
+    /* Soft waves */
+    .wave{ position:fixed; left:0; right:0; bottom:-8vmin; height:24vmin; pointer-events:none; opacity:.25; filter:blur(2px);
+      background:
+        radial-gradient(100% 60% at 0% 100%, #fff 0 35%, transparent 36%) 0 0/25% 100% repeat-x,
+        radial-gradient(100% 60% at 50% 100%, #fff 0 35%, transparent 36%) 0 0/25% 100% repeat-x,
+        radial-gradient(100% 60% at 100% 100%, #fff 0 35%, transparent 36%) 0 0/25% 100% repeat-x;
+      animation: waveMove 12s linear infinite;
+    }
+    .wave:nth-child(2){ bottom:-4vmin; opacity:.18; animation-duration:18s }
+    .wave:nth-child(3){ bottom:-1vmin; opacity:.10; animation-duration:26s }
+    @keyframes waveMove{ from{background-position:0 0,12.5% 0,25% 0} to{background-position:25% 0,37.5% 0,50% 0} }
+
+    /* Chick footprints drifting up (replaces eggs) */
+    .prints{ position:fixed; inset:0; pointer-events:none; }
+    .print{
+      position:absolute; width:18px; height:18px; opacity:.26; transform: translateY(110vh) rotate(0deg);
+      animation: rise linear infinite;
+    }
+    /* Footprint shape with two toes + heel using pseudo-elements */
+    .print::before, .print::after{
+      content:""; position:absolute; background:#000; border-radius:50%;
+      width:6px; height:6px; left:6px; top:2px; transform: rotate(10deg);
+    }
+    .print::after{ left:0; top:6px; transform: rotate(-10deg); }
+    .heel{ position:absolute; left:8px; top:10px; width:6px; height:6px; background:#000; border-radius:50%; }
+    @keyframes rise{
+      from{ transform: translateY(110vh) rotate(0deg) }
+      to{   transform: translateY(-20vh)  rotate(12deg) }
+    }
+
+    /* Walking chick at bottom */
+    .chick{ position:fixed; bottom:8vmin; left:-15vmin; width:14vmin; height:12vmin; pointer-events:none; animation: walk 22s linear infinite; }
+    @keyframes walk{ 0%{left:-15vmin; transform:scale(1)} 48%{transform:scale(1)} 50%{transform:scaleX(-1)} 100%{left:calc(100% + 15vmin); transform:scaleX(-1)} }
+    .chick .body{ position:absolute; left:2vmin; top:2vmin; width:10vmin; height:8vmin; background:var(--chick); border-radius:50%; box-shadow: inset -0.6vmin -0.6vmin 0 0 #ffc54d; }
+    .chick .wing{ position:absolute; left:5.5vmin; top:4.6vmin; width:4.2vmin; height:3.2vmin; background:#ffd34d; border-radius:50%; transform-origin:top left; animation: flap 1s ease-in-out infinite; box-shadow: inset -0.4vmin -0.4vmin 0 0 #ffc54d; }
+    @keyframes flap{ 0%,100%{transform:rotate(0)} 50%{transform:rotate(-16deg)} }
+    .chick .eye{ position:absolute; left:8.2vmin; top:4.2vmin; width:.9vmin; height:.9vmin; background:#333; border-radius:50%; box-shadow:0 0 0 .25vmin #fff; }
+    .chick .beak{ position:absolute; left:10.2vmin; top:5vmin; width:0; height:0; border-left:1.2vmin solid var(--beak); border-top:.8vmin solid transparent; border-bottom:.8vmin solid transparent; }
+    .chick .leg{ position:absolute; width:.4vmin; height:2.2vmin; background:var(--beak); bottom:-.2vmin; left:5.2vmin; transform-origin:top center; animation: step .45s ease-in-out infinite; }
+    .chick .leg.right{ left:7.2vmin; animation-delay:.22s; }
+    .toe{ position:absolute; width:1.4vmin; height:.35vmin; background:var(--beak); bottom:-.2vmin; left:-.4vmin; }
+    .toe:nth-child(2){ transform:rotate(20deg); left:-.2vmin }
+    .toe:nth-child(3){ transform:rotate(-20deg); left:-.6vmin }
+    @keyframes step{ 0%,100%{transform:rotate(8deg)} 50%{transform:rotate(-12deg)} }
+
+    /* Card */
+    .login-card{
+      width:min(92vw, 380px); padding:2.2rem 2rem; border-radius:1.5rem;
+      background:var(--card-bg); box-shadow:0 10px 40px rgba(0,0,0,.15); backdrop-filter:blur(6px);
+      animation: popIn .9s cubic-bezier(.16,.84,.44,1);
+    }
+    @keyframes popIn{ from{opacity:0; transform:translateY(18px) scale(.98)} to{opacity:1; transform:translateY(0) scale(1)} }
+
+    .brand{ display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; }
+    .brand-logo{ width:44px; height:44px; border-radius:12px; background: radial-gradient(circle at 50% 45%, #fff 0 35%, var(--chick) 36% 100%); box-shadow:0 6px 18px rgba(255,224,102,.6); position:relative; }
+    .brand-logo::after{ content:""; position:absolute; width:10px; height:8px; right:-6px; top:18px; border-radius:0 10px 10px 0; background:linear-gradient(90deg,#ffb703,var(--beak)); }
+    .brand h1{ font-size:1.35rem; margin:0; letter-spacing:.2px; }
+    .subtitle{ margin:0 0 1.25rem; color:#666; font-size:.95rem; }
+
+    .input{ position:relative; margin:.9rem 0; }
+    .input input{
+      width:100%; border:none; outline:none; padding:1rem 3rem 1rem 3rem; border-radius:1rem;
+      background:#f3f6fb; font-size:1rem; color:#222; transition: box-shadow .25s, background .25s, transform .06s;
+    }
+    .input input:focus{ box-shadow:0 0 0 3px var(--focus); background:#fff; }
+    .input label{
+      position:absolute; left:3rem; top:50%; transform:translateY(-50%); color:#9aa6b2; pointer-events:none; transition:.18s;
+    }
+    .input input:focus + label,
+    .input input:not(:placeholder-shown) + label{ top:.2rem; font-size:.78rem; color:var(--focus); }
+    .input .icon{ position:absolute; left:.95rem; top:50%; transform:translateY(-50%); font-size:1.15rem; opacity:.9; }
+    .toggle-pass{ position:absolute; right:.95rem; top:50%; transform:translateY(-50%); font-size:.95rem; cursor:pointer; user-select:none; }
+
+    .btn{
+      width:100%; border:none; padding:.95rem 1rem; border-radius:1rem; margin-top:.4rem; font-weight:700; letter-spacing:.3px; color:#fff; cursor:pointer;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2)); box-shadow:0 10px 24px rgba(255,145,77,.35);
+      transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .btn:hover{ filter:brightness(1.03); box-shadow:0 12px 28px rgba(255,145,77,.45); transform:translateY(-1px) }
+    .btn:active{ transform:translateY(1px) scale(.995) }
+
+    .row{ display:flex; justify-content:space-between; align-items:center; gap:.5rem; margin:.4rem 0 .2rem; font-size:.9rem; color:#666; }
+    .row a{ color:var(--accent); text-decoration:none; }
+    .row a:hover{ text-decoration:underline; }
+
+    .footer{ margin-top:1rem; text-align:center; font-size:.85rem; color:#7b8794; }
+
+    .error{ color:#e11d48; background:#ffe6eb; border:1px solid #ff8aa8; padding:.6rem .8rem; border-radius:.8rem; text-align:center; margin-bottom:.8rem; box-shadow:0 4px 16px rgba(225,29,72,.08); }
+
+    @keyframes shake{ 10%,90%{transform:translateX(-1px)} 20%,80%{transform:translateX(2px)} 30%,50%,70%{transform:translateX(-4px)} 40%,60%{transform:translateX(4px)} }
+    .shake{ animation:shake .45s cubic-bezier(.36,.07,.19,.97) both; }
+
+    @media (max-width:420px){
+      .login-card{ width:min(94vw,380px); padding:1.6rem 1.2rem }
+      .row{ flex-direction:column; gap:.6rem; align-items:flex-start }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Waves -->
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+
+  <!-- Chick footprints layer -->
+  <div class="prints" id="prints"></div>
+
+  <!-- Walking chick -->
+  <div class="chick" aria-hidden="true">
+    <div class="body"></div>
+    <div class="wing"></div>
+    <div class="eye"></div>
+    <div class="beak"></div>
+    <div class="leg"><div class="toe"></div><div class="toe"></div><div class="toe"></div></div>
+    <div class="leg right"><div class="toe"></div><div class="toe"></div><div class="toe"></div></div>
+  </div>
+
+  <!-- Login card -->
+  <main class="login-card<%= request.getParameter("error") != null ? " shake" : "" %>">
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true"></div>
+      <h1>Chicks Transport</h1>
+    </div>
+    <p class="subtitle">Welcome back! Please sign in to continue.</p>
+
+    <% if (request.getParameter("error") != null) { %>
+      <div class="error">Invalid username or password.</div>
+    <% } %>
+
+    <form action="login" method="post" autocomplete="off" id="loginForm">
+      <div class="input">
+        <span class="icon">👤</span>
+        <input id="username" name="username" type="text" required placeholder=" " />
+        <label for="username">Username</label>
+      </div>
+      <div class="input">
+        <span class="icon">🔒</span>
+        <input id="password" name="password" type="password" required placeholder=" " minlength="3"/>
+        <label for="password">Password</label>
+        <span class="toggle-pass" id="togglePass" title="Show/Hide Password">👁️</span>
+      </div>
+
+      <div class="row">
+        <label><input type="checkbox" id="remember" /> Remember me</label>
+        <a href="#" onclick="alert('Please contact your admin to reset your password.'); return false;">Forgot password?</a>
+      </div>
+
+      <button class="btn" type="submit">Sign In</button>
+    </form>
+
+    <div class="footer">© <span id="year"></span> Chicks Transport App</div>
+  </main>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Show/Hide password
+    (() => {
+      const pass = document.getElementById('password');
+      const toggle = document.getElementById('togglePass');
+      toggle.addEventListener('click', () => {
+        const isPwd = pass.type === 'password';
+        pass.type = isPwd ? 'text' : 'password';
+        toggle.textContent = isPwd ? '🙈' : '👁️';
+      });
+    })();
+
+    // Remember me (localStorage)
+    (() => {
+      const user = document.getElementById('username');
+      const remember = document.getElementById('remember');
+      if(localStorage.getItem('ct_remember') === '1'){
+        remember.checked = true;
+        user.value = localStorage.getItem('ct_username') || '';
+      }
+      document.getElementById('loginForm').addEventListener('submit', () => {
+        if(remember.checked){
+          localStorage.setItem('ct_remember','1');
+          localStorage.setItem('ct_username', user.value);
+        }else{
+          localStorage.removeItem('ct_remember');
+          localStorage.removeItem('ct_username');
+        }
+      });
+    })();
+
+    // Shake on error via URL param
+    window.addEventListener('load', () => {
+      const hasError = new URLSearchParams(location.search).has('error');
+      if(hasError){
+        const card = document.querySelector('.login-card');
+        card.classList.add('shake');
+        setTimeout(() => card.classList.remove('shake'), 600);
+      }
+    });
+
+    // Generate drifting chick footprints (pairs) at random spots
+    (function spawnPrints(n=14){
+      const layer = document.getElementById('prints');
+      for(let i=0;i<n;i++){
+        const p = document.createElement('div');
+        p.className = 'print';
+        p.style.left = (Math.random()*100) + 'vw';
+        p.style.animationDuration = (12 + Math.random()*14) + 's';
+        p.style.animationDelay = (-Math.random()*20) + 's';
+        p.style.transform = `translateY(${80+Math.random()*40}vh) rotate(${(Math.random()*30)-15}deg)`;
+        // add heel node inside
+        const heel = document.createElement('div');
+        heel.className = 'heel';
+        p.appendChild(heel);
+        layer.appendChild(p);
+      }
+    })();
+  </script>
+</body>
+</html>

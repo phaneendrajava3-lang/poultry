@@ -1,0 +1,59 @@
+package com.poultry.service.impl;
+
+import com.poultry.model.Customer;
+import com.poultry.repository.CustomerRepository;
+import com.poultry.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    // --- Option 1 style ---
+    @Override
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
+
+    @Override
+    public Customer saveCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
+
+    @Override
+    public Customer updateCustomer(Long id, Customer customer) {
+        customer.setId(id);
+        return customerRepository.save(customer);
+    }
+
+    @Override
+    public void deleteCustomer(Long id) {
+        customerRepository.deleteById(id);
+    }
+
+    // --- Option 2 style (used in your controllers) ---
+    @Override
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
+    }
+
+    @Override
+    public void save(Customer c) {
+        customerRepository.save(c);
+    }
+
+    @Override
+    public void delete(Long id) {
+        customerRepository.deleteById(id);
+    }
+
+    @Override
+    public Customer findById(Long customerId) {
+        return customerRepository.findById(customerId).orElse(null);
+    }
+}

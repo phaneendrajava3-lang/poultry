@@ -1,0 +1,47 @@
+package com.poultry.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.poultry.model.TripDetails;
+import com.poultry.repository.TripDetailsRepository;
+import com.poultry.service.TripDetailsService;
+
+@Service
+public class TripDetailsServiceImpl implements TripDetailsService {
+    @Autowired
+    private TripDetailsRepository tripDetailsRepository;
+
+    @Override
+    public List<TripDetails> findAll() {
+        return tripDetailsRepository.findAll();
+    }
+
+    @Override
+    public TripDetails findById(Long id) {
+        return tripDetailsRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public TripDetails save(TripDetails tripDetails) {
+        return tripDetailsRepository.save(tripDetails);
+    }
+
+    @Override
+    public void delete(Long id) {
+        tripDetailsRepository.deleteById(id);
+    }
+
+    @Override
+    public TripDetails findByTripNumber(int tripNumber) {
+        return tripDetailsRepository.findByTripNumber(tripNumber);
+    }
+
+    @Override
+    public Integer getLatestTripNumber() {
+        TripDetails latest = tripDetailsRepository.findTopByOrderByTripNumberDesc();
+        return (latest != null) ? latest.getTripNumber() : 0;
+    }
+}

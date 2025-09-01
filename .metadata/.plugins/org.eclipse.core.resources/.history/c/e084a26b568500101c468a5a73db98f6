@@ -1,0 +1,8 @@
+package com.poultry.repository;
+
+import com.poultry.model.TripDetails;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TripDetailsRepository extends JpaRepository<TripDetails, Long> {
+    TripDetails findByTripNumber(int tripNumber);
+}

@@ -1,0 +1,86 @@
+package com.poultry.model;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+public class Entry {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private int tripNumber;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
+
+    private int birdCount;
+    private double weight;
+    private double unitPrice;
+    private double extraCharges;
+    private double finalPrice;
+    private double receivedAmount;
+    private double balanceAmount;
+    private String modeOfPayment;
+    private String fromLocation;
+    private String toLocation;
+    private int deadChicks;
+    private double fuelCost;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public LocalDate getDate() { return date; }
+    public void setDate(LocalDate date) { this.date = date; }
+
+    public int getBirdCount() { return birdCount; }
+    public void setBirdCount(int birdCount) { this.birdCount = birdCount; }
+
+    public double getWeight() { return weight; }
+    public void setWeight(double weight) { this.weight = weight; }
+
+    public double getUnitPrice() { return unitPrice; }
+    public void setUnitPrice(double unitPrice) { this.unitPrice = unitPrice; }
+
+    public double getExtraCharges() { return extraCharges; }
+    public void setExtraCharges(double extraCharges) { this.extraCharges = extraCharges; }
+
+    public double getFinalPrice() { return finalPrice; }
+    public void setFinalPrice(double finalPrice) { this.finalPrice = finalPrice; }
+
+    public double getReceivedAmount() { return receivedAmount; }
+    public void setReceivedAmount(double receivedAmount) { this.receivedAmount = receivedAmount; }
+
+    public double getBalanceAmount() { return balanceAmount; }
+    public void setBalanceAmount(double balanceAmount) { this.balanceAmount = balanceAmount; }
+
+    public String getModeOfPayment() { return modeOfPayment; }
+    public void setModeOfPayment(String modeOfPayment) { this.modeOfPayment = modeOfPayment; }
+
+    public Customer getCustomer() { return customer; }
+    public void setCustomer(Customer customer) { this.customer = customer; }
+    
+	public int getTripNumber() {
+		return tripNumber;
+	}
+	public void setTripNumber(int tripNumber) {
+		this.tripNumber = tripNumber;
+	}
+
+    public String getFromLocation() { return fromLocation; }
+    public void setFromLocation(String fromLocation) { this.fromLocation = fromLocation; }
+
+    public String getToLocation() { return toLocation; }
+    public void setToLocation(String toLocation) { this.toLocation = toLocation; }
+
+    public int getDeadChicks() { return deadChicks; }
+    public void setDeadChicks(int deadChicks) { this.deadChicks = deadChicks; }
+
+    public double getFuelCost() { return fuelCost; }
+    public void setFuelCost(double fuelCost) { this.fuelCost = fuelCost; }
+}

@@ -1,0 +1,41 @@
+package com.poultry.controller;
+
+import com.poultry.model.Driver;
+import com.poultry.service.DriverService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/drivers")
+public class DriverController {
+
+    @Autowired private DriverService driverService;
+
+    @GetMapping
+    public String list(Model model) {
+        model.addAttribute("drivers", driverService.findAll());
+        return "drivers";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute Driver d) {
+        driverService.save(d);
+        return "redirect:/drivers";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        driverService.delete(id);
+        return "redirect:/drivers";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) {
+        Driver driver = driverService.findById(id);
+        model.addAttribute("driver", driver);
+        model.addAttribute("drivers", driverService.findAll());
+        return "drivers";
+    }
+}
