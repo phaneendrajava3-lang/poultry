@@ -1,0 +1,59 @@
+package com.poultry.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDate;
+
+@Controller
+public class DashboardController {
+    @Autowired private com.poultry.repository.EntryRepository entryRepository;
+    @Autowired private com.poultry.repository.TripDetailsRepository tripDetailsRepository;
+    @Autowired private com.poultry.repository.VanRepository vanRepository;
+    @Autowired private com.poultry.repository.CustomerRepository customerRepository;
+    @Autowired private com.poultry.repository.DriverRepository driverRepository;
+
+    @GetMapping("/dashboard/{month}/{year}")
+    public String dashboard(HttpSession session, Model model,
+                           @RequestParam(value = "month", required = false) Integer month,
+                           @RequestParam(value = "year", required = false) Integer year) {
+        if (session.getAttribute("loggedInUser") == null) {
+            return "redirect:/login";
+        }
+        java.time.LocalDate now = java.time.LocalDate.now();
+        int currentMonth = now.getMonthValue();
+        int currentYear = now.getYear();
+        if (month == null) month = currentMonth;
+        if (year == null) year = currentYear;
+        model.addAttribute("selectedMonth", month);
+        model.addAttribute("selectedYear", year);
+        model.addAttribute("currentMonth", currentMonth);
+        model.addAttribute("currentYear", currentYear);
+        model.addAttribute("totalCustomers", customerRepository.count());
+        model.addAttribute("totalDrivers", driverRepository.count());
+        model.addAttribute("totalVans", vanRepository.count());
+        model.addAttribute("tripsThisMonth", tripDetailsRepository.countByMonth(month, year));
+        model.addAttribute("entriesThisMonth", entryRepository.countByMonth(month, year));
+        model.addAttribute("fuelCost", tripDetailsRepository.sumFuelCostByMonth(month, year) != null ? tripDetailsRepository.sumFuelCostByMonth(month, year) : 0);
+        model.addAttribute("deadChicks", tripDetailsRepository.sumDeadChicksByMonth(month, year) != null ? tripDetailsRepository.sumDeadChicksByMonth(month, year) : 0);
+        model.addAttribute("entriesAmount", tripDetailsRepository.sumTotalSpentByMonth(month, year) != null ? tripDetailsRepository.sumTotalSpentByMonth(month, year) : 0);
+        model.addAttribute("amountReceived", entryRepository.sumReceivedAmountByMonth(month, year) != null ? entryRepository.sumReceivedAmountByMonth(month, year) : 0);
+        Integer birdsCount = entryRepository.sumBirdCountByMonth(month, year);
+        model.addAttribute("birdsCount", birdsCount != null ? birdsCount : 0);
+        // Fetch latest 10 trip details for the dashboard table, filtered by month/year
+        java.util.List<com.poultry.model.TripDetails> recentTrips = tripDetailsRepository.findByMonthAndYear(month, year);
+        if (recentTrips.size() > 10) recentTrips = recentTrips.subList(0, 10);
+        model.addAttribute("recentTrips", recentTrips);
+        return "dashboard";
+    }
+
+    @GetMapping("/")
+    public String rootRedirect() {
+        return "redirect:/dashboard";
+    }
+}

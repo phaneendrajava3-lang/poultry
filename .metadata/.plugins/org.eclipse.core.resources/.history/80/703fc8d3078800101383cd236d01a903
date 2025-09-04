@@ -1,0 +1,101 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+  .sidebar-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background: linear-gradient(160deg, #0d6efd 60%, #00c6ff 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 1rem 1rem;
+    box-shadow: 2px 0 16px rgba(13,110,253,0.10);
+    z-index: 100;
+  }
+  .sidebar-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  .sidebar-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    flex: 1;
+  }
+  .sidebar-btn-group a.btn {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border-radius: 1.5rem;
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    border: none;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(221,36,118,0.10);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.5px;
+    text-align: left;
+  }
+  .sidebar-btn-group a.btn:nth-child(2) { background: linear-gradient(90deg, #36d1c4 0%, #1e90ff 100%); }
+  .sidebar-btn-group a.btn:nth-child(3) { background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%); color: #333; }
+  .sidebar-btn-group a.btn:nth-child(4) { background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%); }
+  .sidebar-btn-group a.btn:nth-child(5) { background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%); }
+  .sidebar-btn-group a.btn:nth-child(6) { background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%); }
+  .sidebar-btn-group a.btn:nth-child(7) { background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%); }
+  .sidebar-btn-group a.btn:hover {
+    transform: translateX(8px) scale(1.04);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+    filter: brightness(1.08);
+  }
+  .sidebar-logout {
+    margin-top: auto;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border-radius: 1.5rem;
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(90deg, #ff5858 0%, #f857a6 100%);
+    border: none;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(248,87,166,0.10);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    letter-spacing: 0.5px;
+    text-align: left;
+    display: block;
+  }
+  .sidebar-logout:hover {
+    transform: translateX(8px) scale(1.04);
+    box-shadow: 0 6px 24px rgba(248,87,166,0.18);
+    filter: brightness(1.08);
+  }
+  .main-content {
+    margin-left: 250px;
+    padding: 2rem 2rem 2rem 2rem;
+  }
+</style>
+<div class="sidebar-nav">
+  <div class="sidebar-title">Poultry Application</div>
+  <div class="sidebar-btn-group">
+    <a class="btn" href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
+    <a class="btn" href="${pageContext.request.contextPath}/customers">Manage Customers</a>
+    <a class="btn" href="${pageContext.request.contextPath}/drivers">Manage Drivers</a>
+    <a class="btn" href="${pageContext.request.contextPath}/vans">Manage Vans</a>
+    <a class="btn" href="${pageContext.request.contextPath}/users">Manage Users</a>
+    <a class="btn" href="${pageContext.request.contextPath}/entries">Trip Entries</a>
+    <a class="btn" href="${pageContext.request.contextPath}/trip-details">Trip Details</a>
+  </div>
+  <a class="sidebar-logout" href="${pageContext.request.contextPath}/logout">Logout</a>
+</div>
+<div class="main-content">
+  <!-- Main content goes here -->
+</div>

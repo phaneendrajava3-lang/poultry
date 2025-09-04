@@ -1,7 +1,0 @@
-
-package com.poultry.repository;
-
-import com.poultry.model.Driver;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface DriverRepository extends JpaRepository<Driver, Long> {}
