@@ -1,0 +1,92 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+  .topnav {
+    width: 100%;
+    background: linear-gradient(90deg, #ff7b54 0%, #ffa260 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 60px;
+  }
+  .topnav-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-right: 2rem;
+  }
+  .topnav-btn-group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    margin: 1.2rem 0;
+  }
+  .topnav-btn-group a.btn, .topnav-logout {
+    border-radius: 1.2rem;
+    padding: 0.45rem 1.3rem;
+    font-size: 1rem;
+    font-weight: 500;
+    min-width: 130px;
+    text-align: center;
+    background: linear-gradient(90deg, #ffa260 0%, #ff7b54 100%);
+    color: #fff;
+    border: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    text-decoration: none;
+    margin: 0 0.1rem;
+    display: inline-block;
+  }
+  .topnav-btn-group a.btn:hover, .topnav-btn-group a.btn.active {
+    background: linear-gradient(90deg, #ff7b54 0%, #ffa260 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(13,110,253,0.10);
+  }
+  .topnav-logout {
+    background: linear-gradient(90deg, #e11d48 0%, #ff7b54 100%);
+    color: #fff;
+    margin-left: auto;
+  }
+  .topnav-logout:hover {
+    background: linear-gradient(90deg, #ff7b54 0%, #e11d48 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(248,87,166,0.18);
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+  }
+  .main-content {
+    margin-left: 0 !important;
+    margin-top: 30px !important;
+    padding: 1.2rem 0.5rem 0.2rem 0.5rem !important;
+    /* Remove extra top space and reduce side padding */
+  }
+  .container, .container-fluid {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+</style>
+<div class="topnav">
+  <div class="topnav-title">Poultry Application</div>
+  <a class="topnav-logout" href="${pageContext.request.contextPath}/logout">Logout</a>
+</div>
+<div class="main-content">
+  <div class="topnav-btn-group" style="display:flex;justify-content:center;gap:0.5rem;margin-bottom:1.2rem;margin-top:1.2rem;">
+    <a class="btn" href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
+    <a class="btn" href="${pageContext.request.contextPath}/customers">Customers</a>
+    <a class="btn" href="${pageContext.request.contextPath}/drivers">Drivers</a>
+    <a class="btn" href="${pageContext.request.contextPath}/vans">Vans</a>
+    <a class="btn" href="${pageContext.request.contextPath}/users">Users</a>
+    <a class="btn" href="${pageContext.request.contextPath}/entries">Trip Entries</a>
+    <a class="btn" href="${pageContext.request.contextPath}/trip-details">Trip Details</a>
+  </div>
+  <!-- Main content goes here -->
+</div>

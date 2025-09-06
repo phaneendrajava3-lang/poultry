@@ -1,0 +1,26 @@
+package com.poultry.service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.domain.Pageable;
+
+import com.poultry.model.Customer;
+import com.poultry.model.Entry;
+
+public interface EntryService {
+
+	  public List<Entry> getAll();
+	  public Entry findById(Long id);
+	  public Entry save(Entry entry);
+	  public Entry update(Long id, Entry entry);
+	  public void delete(Long id);
+	  List<Entry> findByCustomer(Customer customer);
+
+		/*
+		 * List<Entry> filterEntries(String customerName, LocalDate startDate, LocalDate
+		 * endDate);
+		 */
+	  List<Entry> filterEntries(String customerName, LocalDate startDate, LocalDate endDate, int page, int size);
+	  List<Entry> getPaged(int page, int size);
+}

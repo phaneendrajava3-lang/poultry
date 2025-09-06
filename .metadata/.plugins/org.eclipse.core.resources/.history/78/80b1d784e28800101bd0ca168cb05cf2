@@ -1,0 +1,149 @@
+package com.poultry.controller;
+
+import com.poultry.repository.EntryRepository;
+import com.poultry.repository.CustomerRepository;
+import com.poultry.service.ReportService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+
+import javax.servlet.http.HttpSession;
+import java.io.ByteArrayOutputStream;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Controller
+public class ReportController {
+    @Autowired private EntryRepository entryRepository;
+    @Autowired private CustomerRepository customerRepository;
+    @Autowired private ReportService reportService;
+
+    private static final Logger logger = LoggerFactory.getLogger(ReportController.class);
+
+    @GetMapping("/report/pdf")
+    public ResponseEntity<byte[]> generateReportPdf(HttpSession session,
+        @RequestParam(value = "month", required = false) Integer month,
+        @RequestParam(value = "year", required = false) Integer year) {
+        try {
+            if (session.getAttribute("loggedInUser") == null) {
+                return ResponseEntity.status(401).body(null);
+            }
+            LocalDate now = LocalDate.now();
+            if (month == null) month = now.getMonthValue();
+            if (year == null) year = now.getYear();
+
+            List<Object[]> entries = entryRepository.findReportEntries(month, year);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            Document document = new Document();
+            PdfWriter.getInstance(document, baos);
+            document.open();
+            document.add(new Paragraph("Expenditure & Returns Report"));
+            document.add(new Paragraph("Month: " + month + " Year: " + year));
+            document.add(new Paragraph(" "));
+            PdfPTable table = new PdfPTable(5);
+            table.addCell("Date");
+            table.addCell("Customer Name");
+            table.addCell("Final Price");
+            table.addCell("Received Amount");
+            table.addCell("Balance Amount");
+            double totalFinal = 0, totalReceived = 0, totalBalance = 0;
+            for (Object[] row : entries) {
+                table.addCell(row[0] != null ? row[0].toString() : "");
+                table.addCell(row[1] != null ? row[1].toString() : "");
+                table.addCell(row[2] != null ? row[2].toString() : "0");
+                table.addCell(row[3] != null ? row[3].toString() : "0");
+                table.addCell(row[4] != null ? row[4].toString() : "0");
+                totalFinal += row[2] != null ? Double.parseDouble(row[2].toString()) : 0;
+                totalReceived += row[3] != null ? Double.parseDouble(row[3].toString()) : 0;
+                totalBalance += row[4] != null ? Double.parseDouble(row[4].toString()) : 0;
+            }
+            document.add(table);
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Monthly Consolidation:"));
+            document.add(new Paragraph("Total Final Price: " + totalFinal));
+            document.add(new Paragraph("Total Received Amount: " + totalReceived));
+            document.add(new Paragraph("Total Balance Amount: " + totalBalance));
+            document.close();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDispositionFormData("attachment", "report.pdf");
+            return ResponseEntity.ok().headers(headers).body(baos.toByteArray());
+        } catch (Exception e) {
+            logger.error("Error generating monthly report PDF", e);
+            return ResponseEntity.status(500).body(null);
+        }
+    }
+
+    @GetMapping("/report/pdf-yearly")
+    public ResponseEntity<byte[]> generateYearlyReportPdf(HttpSession session,
+        @RequestParam(value = "year", required = false) Integer year) {
+        try {
+            if (session.getAttribute("loggedInUser") == null) {
+                return ResponseEntity.status(401).body(null);
+            }
+            LocalDate now = LocalDate.now();
+            if (year == null) year = now.getYear();
+            List<Object[]> entries = reportService.getYearlyReport(year);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            Document document = new Document();
+            PdfWriter.getInstance(document, baos);
+            document.open();
+            document.add(new Paragraph("Expenditure & Returns Yearly Report"));
+            document.add(new Paragraph("Year: " + year));
+            document.add(new Paragraph(" "));
+            PdfPTable table = new PdfPTable(5);
+            table.addCell("Date");
+            table.addCell("Customer Name");
+            table.addCell("Final Price");
+            table.addCell("Received Amount");
+            table.addCell("Balance Amount");
+            double totalFinal = 0, totalReceived = 0, totalBalance = 0;
+            for (Object[] row : entries) {
+                table.addCell(row[0] != null ? row[0].toString() : "");
+                table.addCell(row[1] != null ? row[1].toString() : "");
+                table.addCell(row[2] != null ? row[2].toString() : "0");
+                table.addCell(row[3] != null ? row[3].toString() : "0");
+                table.addCell(row[4] != null ? row[4].toString() : "0");
+                totalFinal += row[2] != null ? Double.parseDouble(row[2].toString()) : 0;
+                totalReceived += row[3] != null ? Double.parseDouble(row[3].toString()) : 0;
+                totalBalance += row[4] != null ? Double.parseDouble(row[4].toString()) : 0;
+            }
+            document.add(table);
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Yearly Consolidation:"));
+            document.add(new Paragraph("Total Final Price: " + totalFinal));
+            document.add(new Paragraph("Total Received Amount: " + totalReceived));
+            document.add(new Paragraph("Total Balance Amount: " + totalBalance));
+            document.close();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDispositionFormData("attachment", "yearly_report.pdf");
+            return ResponseEntity.ok().headers(headers).body(baos.toByteArray());
+        } catch (Exception e) {
+            logger.error("Error generating yearly report PDF", e);
+            return ResponseEntity.status(500).body(null);
+        }
+    }
+
+	public CustomerRepository getCustomerRepository() {
+		return customerRepository;
+	}
+
+	public void setCustomerRepository(CustomerRepository customerRepository) {
+		this.customerRepository = customerRepository;
+	}
+}

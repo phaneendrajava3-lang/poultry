@@ -10,6 +10,10 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="javax.servlet"/>
+			<item value="show"/>
+			<item value="mb-3"/>
+			<item value="financeChart"/>
 			<item value="15"/>
 			<item value="var dur"/>
 			<item value="var ty"/>
@@ -21,10 +25,6 @@
 			<item value="Dead Chicks &amp; Trips"/>
 			<item value="filter"/>
 			<item value="sugges"/>
-			<item value="/search"/>
-			<item value="customerSuggestions"/>
-			<item value="customerIdInput"/>
-			<item value="list-group position-absolute"/>
 		</list>
 		<list key="replacehistory">
 		</list>

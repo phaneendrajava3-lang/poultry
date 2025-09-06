@@ -1,0 +1,244 @@
+package com.poultry.controller;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Element;
+import com.lowagie.text.Chunk;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import com.poultry.model.Customer;
+import com.poultry.model.Entry;
+import com.poultry.service.CustomerService;
+import com.poultry.service.EntryService;
+import com.poultry.service.TripDetailsService;
+
+@Controller
+@RequestMapping("/entries")
+public class EntryController {
+
+    @Autowired private EntryService entryService;
+    @Autowired private CustomerService customerService;
+    @Autowired private TripDetailsService tripDetailsService;
+
+    @GetMapping
+    public String page(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+        int size = 20;
+        model.addAttribute("entries", entryService.getPaged(page, size));
+        model.addAttribute("customers", customerService.findAll());
+        model.addAttribute("tripDetailsList", tripDetailsService.findAll());
+        model.addAttribute("currentPage", page);
+        return "entries";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute Entry entry,
+                       @RequestParam("customer.id") Long customerId) {
+        // attach managed Customer by ID coming from the dropdown
+        Customer customer = customerService.findById(customerId);
+        if (customer == null) {
+            // handle gracefully; for now just bounce back
+            return "redirect:/entries?error=customer_not_found";
+        }
+        entry.setCustomer(customer);
+        // Server-side validation for Book No/Bill No. to contain '/'
+        if (entry.getBookOrBillNo() == null || !entry.getBookOrBillNo().contains("/")) {
+            return "redirect:/entries?error=invalid_book_or_bill_no";
+        }
+        entryService.save(entry);
+        return "redirect:/entries";
+    }
+
+    @GetMapping("/print/{id}")
+    public void printEntryPdf(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        Entry entry = entryService.findById(id);
+        if (entry == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Entry not found");
+            return;
+        }
+        String customerName = entry.getCustomer() != null ? entry.getCustomer().getName().replaceAll("\\s+", "_") : "customer";
+        String dateStr = entry.getDate() != null ? entry.getDate().toString() : "date";
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=" + customerName + "-" + dateStr + ".pdf");
+        Document document = new Document();
+        try {
+            PdfWriter.getInstance(document, response.getOutputStream());
+            document.open();
+            // Add a title
+            Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
+            Paragraph title = new Paragraph("Trip Entry Details", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+            document.add(Chunk.NEWLINE);
+
+            // Create a table with 2 columns
+            PdfPTable table = new PdfPTable(2);
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(10f);
+            table.setSpacingAfter(10f);
+
+            // Add headers and values
+            table.addCell("ID");
+            table.addCell(String.valueOf(entry.getId()));
+            table.addCell("Date");
+            table.addCell(String.valueOf(entry.getDate()));
+            table.addCell("Trip Number");
+            table.addCell(String.valueOf(entry.getTripNumber()));
+            table.addCell("Customer");
+            table.addCell(entry.getCustomer() != null ? entry.getCustomer().getName() : "");
+            table.addCell("Book No/Bill No.");
+            table.addCell(entry.getBookOrBillNo());
+            table.addCell("Bird Count");
+            table.addCell(String.valueOf(entry.getBirdCount()));
+            table.addCell("Weight");
+            table.addCell(String.valueOf(entry.getWeight()));
+            table.addCell("Unit Price");
+            table.addCell(String.valueOf(entry.getUnitPrice()));
+            table.addCell("Extra Charges");
+            table.addCell(String.valueOf(entry.getExtraCharges()));
+            table.addCell("Final Price");
+            table.addCell(String.valueOf(entry.getFinalPrice()));
+            table.addCell("Received Amount");
+            table.addCell(String.valueOf(entry.getReceivedAmount()));
+            table.addCell("Balance Amount");
+            table.addCell(String.valueOf(entry.getBalanceAmount()));
+            table.addCell("Mode of Payment");
+            table.addCell(entry.getModeOfPayment());
+
+            document.add(table);
+            document.close();
+        } catch (Exception ex) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "PDF generation failed");
+        }
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        entryService.delete(id);
+        return "redirect:/entries";
+    }
+
+    @GetMapping("/filter")
+    @ResponseBody
+    public List<Entry> filterEntries(@RequestParam(value = "customerName", required = false) String customerName,
+                                     @RequestParam(value = "startDate", required = false) String startDateStr,
+                                     @RequestParam(value = "endDate", required = false) String endDateStr,
+                                     @RequestParam(value = "page", defaultValue = "0") int page) {
+        LocalDate startDate = null;
+        LocalDate endDate = null;
+        try {
+            if (startDateStr != null && !startDateStr.isEmpty()) {
+                startDate = LocalDate.parse(startDateStr);
+            }
+            if (endDateStr != null && !endDateStr.isEmpty()) {
+                endDate = LocalDate.parse(endDateStr);
+            }
+        } catch (DateTimeParseException e) {
+            // ignore, will be null
+        }
+        return entryService.filterEntries(customerName, startDate, endDate, page, 20);
+    }
+
+    @GetMapping("/customer-suggestions")
+    @ResponseBody
+    public List<Customer> customerSuggestions(@RequestParam("q") String query) {
+        return customerService.findByNameContainingIgnoreCase(query);
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editEntryForm(@PathVariable Long id, Model model) {
+        Entry entry = entryService.findById(id);
+        if (entry == null) {
+            return "redirect:/entries?error=entry_not_found";
+        }
+        model.addAttribute("entry", entry);
+        model.addAttribute("customers", customerService.findAll());
+        model.addAttribute("tripDetailsList", tripDetailsService.findAll());
+        return "edit_entry";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateEntry(@PathVariable Long id,
+                              @ModelAttribute Entry entry,
+                              @RequestParam("customer.id") Long customerId) {
+        Entry existing = entryService.findById(id);
+        if (existing == null) {
+            return "redirect:/entries?error=entry_not_found";
+        }
+        Customer customer = customerService.findById(customerId);
+        if (customer == null) {
+            return "redirect:/entries?error=customer_not_found";
+        }
+        // Update fields
+        existing.setDate(entry.getDate());
+        existing.setTripNumber(entry.getTripNumber());
+        existing.setCustomer(customer);
+        existing.setBookOrBillNo(entry.getBookOrBillNo());
+        existing.setBirdCount(entry.getBirdCount());
+        existing.setWeight(entry.getWeight());
+        existing.setUnitPrice(entry.getUnitPrice());
+        existing.setExtraCharges(entry.getExtraCharges());
+        existing.setFinalPrice(entry.getFinalPrice());
+        existing.setReceivedAmount(entry.getReceivedAmount());
+        existing.setBalanceAmount(entry.getBalanceAmount());
+        existing.setModeOfPayment(entry.getModeOfPayment());
+        entryService.save(existing);
+        return "redirect:/entries";
+    }
+
+    @PostMapping("/update-income")
+    public String updateIncomeReceived(
+            @RequestParam("customerId") Long customerId,
+            @RequestParam("amountReceived") Double amountReceived,
+            @RequestParam("receivedDate") String receivedDateStr,
+            @RequestParam("tripNumber") String tripNumber,
+            @RequestParam("bookOrBillNo") String bookOrBillNo,
+            @RequestParam(value = "modeOfPayment", required = false) String modeOfPayment) {
+        Customer customer = customerService.findById(customerId);
+        if (customer == null) {
+            return "redirect:/entries?error=customer_not_found";
+        }
+        LocalDate receivedDate;
+        try {
+            receivedDate = LocalDate.parse(receivedDateStr);
+        } catch (DateTimeParseException e) {
+            return "redirect:/entries?error=invalid_date";
+        }
+        // Create a new Entry for the received income
+        Entry entry = new Entry();
+        entry.setCustomer(customer);
+        entry.setDate(receivedDate);
+        entry.setTripNumber(tripNumber);
+        entry.setBookOrBillNo(bookOrBillNo);
+        entry.setModeOfPayment(modeOfPayment);
+        entry.setReceivedAmount(amountReceived);
+        entry.setFinalPrice(0.0);
+        entry.setBalanceAmount(0.0);
+        entry.setBirdCount(0);
+        entry.setWeight(0.0);
+        entry.setUnitPrice(0.0);
+        entry.setExtraCharges(0.0);
+        // Save the new entry
+        entryService.save(entry);
+        return "redirect:/entries?success=income_updated";
+    }
+}
